@@ -6,7 +6,7 @@ from tkinter import *
 root = Tk()
 
 # creating label widget
-myLabel = Label(root, text = "Hello World")
+myLabel = Label(root, text = "Welcome to Terrapin Water Tracker")
 
 # puts label on the screen
 myLabel.pack 

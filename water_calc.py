@@ -9,7 +9,7 @@ class  Water_Calculator:
         self.activity_level = activity_level.lower()  # 'inactive', 'lightly_active', 'moderately_active', 'very_active', 'extra_active'
 
     
-    def user_data (self,age, sex, weight, height activity_level):
+    def user_data(self,age, sex, weight, height activity_level):
         """Collect user data .
          We need to collect age, sex, weight in punds, height in inches, activity level. The activity level optons are:
              sedentary, lightly active, moderatly active, very active, extra active"""
