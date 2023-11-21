@@ -26,17 +26,17 @@ class Calculator:
 
 class Terrarium:
     def __init__(self):
-        """Initialize the Aquarium class."""
+        """Initialize the Terrarium class."""
        
-    def display_aquarium(self):
-        """Display the details of the aquarium."""
+    def display_terrarium(self):
+        """Display the details of the terrarium."""
         
-    def update_aquarium(self, water_intake):
+    def update_terrarium(self, water_intake):
         """
-        Update the aquarium with the water intake.
+        Update the terrarium with the water intake.
 
         Parameters:
-        water_intake (float): The amount of water intake to update in the aquarium.
+        water_intake (float): The amount of water intake to update in the terrarium.
         """
 
 class WaterTracker:
@@ -51,10 +51,10 @@ class WaterTracker:
         amount (float): The amount of water intake to log.
         """
 
-    def update_aquarium_water_level(self, amount):
+    def update_terrarium_water_level(self, amount):
         """
-        Update the water level in the aquarium.
+        Update the water level in the terrarium.
 
         Parameters:
-        amount (float): The amount of water to update the aquarium water level with.
+        amount (float): The amount of water to update the terrarium water level with.
         """
