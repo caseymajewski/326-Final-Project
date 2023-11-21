@@ -40,7 +40,7 @@ class  Water_Calculator:
         if activity_level.lower() in activity_multipliers:
            TDEE=bmr * activity_multipliers[activity_level.lower()] # TDEE is total daily energy expenditure
         else:
-            raise ValueError("Invalid value for 'activity_level'. Please use one of: 'sedentary', 'lightly_active', 'moderately_active', 'very_active', 'extra_active'.")
+            raise ValueError("Invalid value for 'activity_level'. Please use one of: 'inactive', 'lightly_active', 'moderately_active', 'very_active', 'extra_active'.")
     
     def final_intake(self, TDEE,):
         water_intake_oz= TDEE(0.5)
