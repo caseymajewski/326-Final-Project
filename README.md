@@ -1,6 +1,4 @@
-# 326-Final-Project
-
-# Terrarium Water Tracker
+# 326-Final-Project: Terrarium Water Tracker
 
 # A program that tracks daily water intake and produces a terrapin-themed terranium visual based on water goals achieved.
 
