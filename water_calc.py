@@ -6,7 +6,7 @@ class  Water_Calculator:
         self.sex = sex.lower() 
         self.weight = weight
         self.height = height
-        self.activity_level = activity_level.lower()  # 'sedentary', 'lightly_active', 'moderately_active', 'very_active', 'extra
+        self.activity_level = activity_level.lower()  # 'inactive', 'lightly_active', 'moderately_active', 'very_active', 'extra_active'
 
     
     def user_data (self,age, sex, weight, height activity_level):
@@ -30,7 +30,7 @@ class  Water_Calculator:
     def adjust_for_activity_level(bmr, activity_level):
         # adjust BMR based off of how active you are
         activity_multipliers = {
-        'sedentary': 1.2,
+        'inactive': 1.2,
         'lightly_active': 1.375,
         'moderately_active': 1.55,
         'very_active': 1.725,
