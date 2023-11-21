@@ -1,60 +1,8 @@
 # 326-Final-Project
 
-""" Import whatever needs to be imported """
+# Terrarium Water Tracker
 
-"""Class to calculate how much water a person needs to drink based off of user data. """
+# A program that tracks daily water intake and produces a terrapin-themed terranium visual based on water goals achieved.
 
-class Calculator:
-    def __init__(self):
-        """Initialize the Calculator class."""
-    
-    def user_data(self):
-        """Collect user data such as weight, sex, and height."""
+Our project is a  water intake tracker that encourages users to reach their average daily water intake through fun animations and visuals. The main animation is a terrapin in a terranium that gradually fills up with water starting from the bottom of the tank, per every glass the user drinks in a day. The goal for the user is to create a terranium that is entirely full of water and the terrapin can easily swim around in it. If our user drinks additional water after achieving their daily water intake, than other fun water-based plants an animals will pop up for their enjoyment. These visuals were created using the pygame module. 
 
-    def calc_water(self, weight, sex, height):
-        """
-        Calculate the amount of water a person needs to drink based on their weight, sex, and height.
-
-        Parameters:
-        weight (float): The weight of the person.
-        sex (str): The sex of the person, either 'male' or 'female'.
-        height (float): The height of the person.
-
-        Returns:
-        float: The amount of water the person needs to drink.
-        """
-
-class Aquarium:
-    def __init__(self):
-        """Initialize the Aquarium class."""
-       
-    def display_aquarium(self):
-        """Display the details of the aquarium."""
-        
-    def update_aquarium(self, water_intake):
-        """
-        Update the aquarium with the water intake.
-
-        Parameters:
-        water_intake (float): The amount of water intake to update in the aquarium.
-        """
-
-class WaterTracker:
-    def __init__(self):
-        """Initialize the WaterTracker class."""
-      
-    def log_water_intake(self, amount):
-        """
-        Log the water intake for tracking purposes.
-
-        Parameters:
-        amount (float): The amount of water intake to log.
-        """
-
-    def update_aquarium_water_level(self, amount):
-        """
-        Update the water level in the aquarium.
-
-        Parameters:
-        amount (float): The amount of water to update the aquarium water level with.
-        """
