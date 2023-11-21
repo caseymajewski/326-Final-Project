@@ -4,7 +4,8 @@
 
 """Class to calculate how much water a person needs to drink based off of user data. """
 
-class Calculator:
+# matches with the water_calc.py file included in this repository
+class Water_Calculator:
     def __init__(self):
         """Initialize the Calculator class."""
     
