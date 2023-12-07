@@ -1,9 +1,8 @@
 from tkinter import *
-from tkinter import ttk
 
 class Tkinter():
 
-    def __init__(self, screenname, basename = classname, usetk, sync, use):
+    def __init__(self, screenname, basename, classname, usetk, sync, use):
 
         self.screenname = None
         self.basename = None
@@ -27,7 +26,5 @@ class Tkinter():
 
         # our root widget is included in the main loop of the program
         root.mainloop()
-
-
 
 
