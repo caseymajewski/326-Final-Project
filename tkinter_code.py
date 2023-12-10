@@ -27,9 +27,9 @@ class MainPage(tk.Tk):
 
         self.frames = {}
 
-        container.grid_rowconfigure or .grid_columnconfigure or .grid_packconfigure #backbone of page switching function 
+        #container.grid_rowconfigure or .grid_columnconfigure or .grid_packconfigure #backbone of page switching function 
 
-        for f in (Frame1, Frame2): #frame3): #change framex to whatever class we created for each frame
+        for f in (Frame1): #frame3): #change framex to whatever class we created for each frame
             frame = f(container, self)
             self.frames[f] = frame
             frame.grid(row = 1, column = 1, sticky = "nsew") # sticky determines where to position the widget in its cell, and the string contains n = north, s = south, e = east, w = west
@@ -38,8 +38,19 @@ class MainPage(tk.Tk):
         '''Function designed to switch between frames in tkinter. '''
 
         frame = self.frames[controller]
-        frame.tkraise
+        frame.tkraise()
         # next line depends on how we are going about it
+
+class Frame1(tk.Frame):
+
+    def __init__(self, parent, controller):
+
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+
+        button = tk.Button(self, command = lambda: controller.show_frame(Frame2))
+        button.grid(row = 1, column = 0, pady = 10, padx = 10)
+
 
 if __name__ == "__main__":
 
