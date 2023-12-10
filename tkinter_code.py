@@ -1,62 +1,28 @@
-from tkinter import *
-import tkinter as tk
+from tkinter import * as Tk
+import pygame
+from pygame.locals import *
 
-# multiple screens: multiple classes and each class is a "page" (frame) and then have a button that flips from one page to another, but also have a main class for the main part of it. 
-# when you put in a button you add in a commmand and a controller and then the command says if you click it it'll show frame and the parameters are classes that represent diff pages. Instead of a button,
-# you would have
-# have a counter and a sum and every time the sum equals a certain amount it goes to a new page, counter adds however much water the user drank. 
-# coding syntax: import tkinter as tk
+pygame.init()
 
-# inside of the specific page you are making, make the main class the home page, inside init function of each class (frame/page), use this as it defines what is happening on this page
-# need a function that changes between each frame on the main page, the main page is the one you are going to be going back and forth from
+class TerrapinWaterTracker():
 
-# Tkinter.Button(self, text = "cups of water", command = lambda: controller.show_frame(Tkinter))
+    def __init__(self, master):
+            self.master = master
+            self.master.title("Terrapin Water Tracker")
+    
+            self.screen= pygame.display.set_mode((800,600))
+            pygame.display.set_caption(" Your Terrarium!")
+            self.water_level=0
+            self.age_var= StringVar()
+            self.sex_var=StringVar()
+            self.weight_var= StringVar()
+            self.activity_level_var=IntVar()
 
-#syntax for switching frames
+            self.create_user_input_widgets
 
-# this class basically inherits from the tkinter module as a subclass of the tkinter, which is why there are parameters in the class
-class MainPage(tk.Tk):
 
-    #Thompson helped us with this plzzzz
-    def __init__(self, *args, **kwargs): #asteriks are shortcuts, normally would pass in variables, instead of limiting to just x,y you can do asterik args which takes in a sample argument. Think of SQL, * allow you to put an unlimited amount of variables in there. Ifyou were to do the sum of *args and pass in 3 numbers it will add 3 numbers together. Keywords of args and kwargs mean: args stand for argument and kwargs stand for keyword arguments.
-
-        tk.Tk.__init__(self, *args, **kwargs)
-
-        container = tk.Frame(self)
-        container.grid(row = 1, column = 1)
-
-        self.frames = {}
-
-        container.grid_rowconfigure or .grid_columnconfigure or .grid_packconfigure #backbone of page switching function 
-
-        for f in (Frame1, Frame2): #frame3): #change framex to whatever class we created for each frame
-            frame = f(container, self)
-            self.frames[f] = frame
-            frame.grid(row = 1, column = 1, sticky = "nsew") # sticky determines where to position the widget in its cell, and the string contains n = north, s = south, e = east, w = west
-
-    def show_frame(self, controller):
-        '''Function designed to switch between frames in tkinter. '''
-
-        frame = self.frames[controller]
-        frame.tkraise
-        # next line depends on how we are going about it
-
-if __name__ == "__main__":
-
-    main = MainPage()
-    main.geometry("400x300")
-    main.mainloop()
-
-'''class Tkinter():
-
-    def __init__(self, screenname, basename, classname, usetk, sync, use):
-
-        self.screenname = None
-        self.basename = None
-        self.classname = 'Tk'
-        self.usetk = True
-        self.sync = False
-        self.use = None
+            self.label= tk .Label(master, text = "Terrapin Water Tracker")
+            self.label.pack()
     
     def widget(self):
 
@@ -69,9 +35,14 @@ if __name__ == "__main__":
         myLabel = Label(root, text = "Welcome to Terrapin Water Tracker")
 
         # puts label on the screen
-        myLabel.pack 
+        myLabel.grid(row=0, column=0)
 
         # our root widget is included in the main loop of the program
         root.mainloop()
-'''
+
+        start_button= Button( root, text ="Start", padx=50, pady=50)
+        start_button.grid( row=7, column= 8)
+
+
+
 
