@@ -1,16 +1,28 @@
-from tkinter import *
-from tkinter import ttk
+from tkinter import * as Tk
+import pygame
+from pygame.locals import *
 
-class Tkinter():
+pygame.init()
 
-    def __init__(self, screenname, basename = classname, usetk, sync, use):
+class TerrapinWaterTracker():
 
-        self.screenname = None
-        self.basename = None
-        self.classname = 'Tk'
-        self.usetk = True
-        self.sync = False
-        self.use = None
+    def __init__(self, master):
+            self.master = master
+            self.master.title("Terrapin Water Tracker")
+    
+            self.screen= pygame.display.set_mode((800,600))
+            pygame.display.set_caption(" Your Terrarium!")
+            self.water_level=0
+            self.age_var= StringVar()
+            self.sex_var=StringVar()
+            self.weight_var= StringVar()
+            self.activity_level_var=IntVar()
+
+            self.create_user_input_widgets
+
+
+            self.label= tk .Label(master, text = "Terrapin Water Tracker")
+            self.label.pack()
     
     def widget(self):
 
@@ -23,10 +35,13 @@ class Tkinter():
         myLabel = Label(root, text = "Welcome to Terrapin Water Tracker")
 
         # puts label on the screen
-        myLabel.pack 
+        myLabel.grid(row=0, column=0)
 
         # our root widget is included in the main loop of the program
         root.mainloop()
+
+        start_button= Button( root, text ="Start", padx=50, pady=50)
+        start_button.grid( row=7, column= 8)
 
 
 
