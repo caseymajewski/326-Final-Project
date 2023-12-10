@@ -44,7 +44,7 @@ class Frame1(tk.Frame):
         # is there a way for us to use inheritance here as well? the only thing that changes between classes is the button takes you to the next frame in the sequence
     def button(self):
 
-        button = tk.Button(self, command = lambda: controller.show_frame(Water_Calculator))
+        button = tk.Button(self, command = lambda: controller.show_frame(Water_Calculator_Screen))
 
         button.grid(row = 1, column = 0, pady = 10, padx = 10)
 
@@ -70,7 +70,7 @@ class Frame2(Frame1):
         button2 = tk.Button(self, command = lambda: controller.show_frame(Frame3))
         button2.grid(row = 1, column = 0, pady = 10, padx = 10)
 
-class Water_Calculator(Frame1):
+class Water_Calculator_Screen(Frame1):
     ''' Water Calculator page'''
 
     def __init__(self, parent, controller):
