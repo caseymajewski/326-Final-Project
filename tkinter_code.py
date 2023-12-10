@@ -67,24 +67,8 @@ class InfoPage(Frame1):
 
         super().__init__(parent, controller)
 
-        root = tk.Tk()
-        root.withdraw()
+        Water_Calculator().get_user_input()
 
-        self.get_user_input(Water_Calculator)
-        '''
-        user_age = simpledialog.askstring("Input", "Enter your age:")
-        user_sex = simpledialog.askstring(input("Enter your sex (m/f): ").lower())
-        user_weight = simpledialog.askfloat("Input", "Enter your weight in pounds: ")
-        user_height = simpledialog.askfloat("Input", "Enter your height in inches: ")
-        user_activity_level = simpledialog.askinteger("Input", "Enter your activity level from 1-5: ")
-        '''
-
-        ''' image_path_2 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/Info.png"
-        self.load_image(image_path_2)
-
-
-        button2 = tk.Button(self, command = lambda: controller.show_frame(I_Drank_Water_Screen))
-        button2.grid(row = 1, column = 0, pady = 10, padx = 10)'''
 
 class I_Drank_Water_Screen(Frame1):
     '''Log Water Screen (takes you to water calculator screen)'''
