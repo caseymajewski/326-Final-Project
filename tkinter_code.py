@@ -140,6 +140,79 @@ class Frame8(Frame1):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
+        image_path_8 = ""
+        self.load_image(image_path_8)
+
+        button8 = tk.Button(self, command = lambda: controller.show_frame(Frame9))
+        button8.grid(row = 1, column = 0, pady = 10, padx = 10)
+
+class Frame9(Frame1):
+    '''60% there'''
+    def __init__(self, parent, controller):
+        super().__init__(parent, controller)
+
+        image_path_9 = ""
+        self.load_image(image_path_9)
+
+        button9 = tk.Button(self, command = lambda: controller.show_frame(Frame10))
+        button9.grid(row = 1, column = 0, pady = 10, padx = 10)
+
+class Frame10(Frame1):
+    '''70% there'''
+    def __init__(self, parent, controller):
+        super().__init__(parent, controller)
+
+        image_path_10 = ""
+        self.load_image(image_path_10)
+
+        button10 = tk.Button(self, command = lambda: controller.show_frame(Frame11))
+        button10.grid(row = 1, column = 0, pady = 10, padx = 10)
+
+class Frame11(Frame1):
+    '''80% there'''
+    def __init__(self, parent, controller):
+        super().__init__(parent, controller)
+
+        image_path_11 = ""
+        self.load_image(image_path_11)
+
+        button11 = tk.Button(self, command = lambda: controller.show_frame(Frame12))
+        button11.grid(row = 1, column = 0, pady = 10, padx = 10)
+
+class Frame12(Frame1):
+    '''80% there'''
+    def __init__(self, parent, controller):
+        super().__init__(parent, controller)
+
+        image_path_12 = ""
+        self.load_image(image_path_12)
+
+        button12 = tk.Button(self, command = lambda: controller.show_frame(Frame13))
+        button12.grid(row = 1, column = 0, pady = 10, padx = 10)
+
+class Frame13(Frame1):
+    '''90% there'''
+    def __init__(self, parent, controller):
+        super().__init__(parent, controller)
+
+        image_path_13 = ""
+        self.load_image(image_path_13)
+
+        button13 = tk.Button(self, command = lambda: controller.show_frame(Frame14))
+        button13.grid(row = 1, column = 0, pady = 10, padx = 10)
+
+class Frame14(Frame1):
+    '''100% there'''
+    def __init__(self, parent, controller):
+        super().__init__(parent, controller)
+
+        image_path_14 = ""
+        self.load_image(image_path_14)
+
+        button14 = tk.Button(self, command = lambda: controller.show_frame(Frame15))
+        button14.grid(row = 1, column = 0, pady = 10, padx = 10)
+
+
 if __name__ == "__main__":
 
     main = MainPage()
