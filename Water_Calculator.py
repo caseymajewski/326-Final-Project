@@ -1,59 +1,58 @@
 class  Water_Calculator:
-     
-    def __init__ (self, age, sex, weight, height,activity_level):
+
+    def __init__(self):
         """Initialize the Calculator class."""
-        self.age = age
-        self.sex = sex.lower() 
-        self.weight = weight
-        self.height = height
-        self.activity_level= activity_level
-    
-    def user_data (self,age, sex, weight, height, activity_level):
-        #Collect user data .
-        
-        
-        name = input("Enter your name")
-        age = input("Hi " + name + "! Please enter your age: ")
-        sex = input("Please indicate your sex (m/f): ")
-        weight = input("Please enter your weight in pounds: ")
-        height = input("Please enter your height in inches: ")
-        activity_level = input("Please rate your activity level from 1-5, 5 being incredibly active and 1 being sedentary: ")
+        self.get_user_input()
+        self.bmr = None
+        self.TDEE = None
 
+    def get_user_input(self):
+        """Get user input for age, sex, weight, height, and activity level."""
+        self.age = int(input("Enter your age: "))
+        self.sex = input("Enter your sex (m/f): ").lower()
+        self.weight = float(input("Enter your weight in pounds: "))
+        self.height = float(input("Enter your height in inches: "))
+        self.activity_level = int(input("Enter your activity level from 1-5: "))
 
-
-
-    def calc_BMR(self,age, sex, weight, height):
-        """BMR is Basal Metabolic Rate based off of the Harris-Benedict equation """
-       
-        if sex == "m":
-            BMR_f= 66+(6.23(weight))+(12.7(height))-(6.8(age))
-        
-        elif sex== "f":
-            BMR_m= 655+(4.35(weight))+ (4.7(height))-(4.7(age))
+    def calc_BMR(self):
+        """Calculate BMR based on the Harris-Benedict equation."""
+        if self.sex == "m":
+            self.bmr = 66 + (6.23 * self.weight) + (12.7 * self.height) - (6.8 * self.age)
+        elif self.sex == "f":
+            self.bmr = 655 + (4.35 * self.weight) + (4.7 * self.height) - (4.7 * self.age)
         else:
-            raise ValueError("Invalid value for 'sex'. Please use 'male' or 'female'.")
+            raise ValueError("Invalid value for 'sex'. Please use 'm' or 'f'.")
+        return self.bmr
 
-    
-    def adjust_for_activity_level(bmr, activity_level):
-        # adjust BMR based off of how active you are
+    def adjust_for_activity_level(self):
+        """Adjust BMR based on the user's activity level."""
         activity_multipliers = {
-        1: 1.2,
-        2: 1.375,
-        3: 1.55,
-        4: 1.725,
-        5: 1.9
+            1: 1.2,
+            2: 1.375,
+            3: 1.55,
+            4: 1.725,
+            5: 1.9
         }
 
-        if activity_level.lower() in activity_multipliers:
-           TDEE=bmr * activity_multipliers[activity_level.lower()] # TDEE is total daily energy expenditure
+        if self.activity_level in activity_multipliers:
+            self.TDEE = self.bmr * activity_multipliers[self.activity_level]
         else:
-            raise ValueError("Invalid value for 'activity_level'. Please use one of: 'sedentary', 'lightly_active', 'moderately_active', 'very_active', 'extra_active'.")
-    
-    def final_intake(self, TDEE,):
-        water_intake_oz= TDEE(0.5)
-        water_intake_cups=water_intake_oz(0.125)
-        print(" Your daily water goal is {water_intake_oz} ounces, or {water_intake_cups} cups!")
-        water_goal= water_intake_cups
+            raise ValueError("Invalid value for 'activity_level'. Please use values 1-5.")
+        return self.TDEE
+
+    def final_intake(self):
+        """Calculate and print the final water intake."""
+        water_intake_oz = self.TDEE * 0.5
+        water_intake_cups = water_intake_oz * 0.125
+        print(f"Your daily water goal is {water_intake_oz:.2f} ounces, or {water_intake_cups:.2f} cups!")
+
+
+
+calculator = Water_Calculator()
+calculator.calc_BMR()
+calculator.adjust_for_activity_level()
+calculator.final_intake()
+
        
         
 
