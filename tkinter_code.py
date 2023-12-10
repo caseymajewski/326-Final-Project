@@ -16,7 +16,7 @@ class MainPage(tk.Tk):
 
         #container.grid_rowconfigure or .grid_columnconfigure or .grid_packconfigure #backbone of page switching function
 
-        for f in (Frame1, Frame2): #frame3): #change framex to whatever class we created for each frame
+        for f in (Frame1, InfoPage, I_Drank_Water_Screen, Water_Calculator_Screen, Benchmark1, Benchmark2, ): #frame3): #change framex to whatever class we created for each frame
             frame = f(container, self)
             self.frames[f] = frame
             frame.grid(row = 1, column = 1, sticky = "nsew") # sticky determines where to position the widget in its cell, and the string contains n = north, s = south, e = east, w = west
@@ -117,96 +117,85 @@ class Benchmark2(Frame1):
 
         self.button()
 
-class Frame6(Frame1):
+class Benchmark3(Frame1):
     '''30% there'''
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_6 = ""
+        image_path_6 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/30%.png"
         self.load_image(image_path_6)
 
         self.button()
 
-class Frame7(Frame1):
+class Benchmark4(Frame1):
     '''40% there'''
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_7 = ""
+        image_path_7 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/40%.png"
         self.load_image(image_path_7)
 
         self.button()
 
-class Frame8(Frame1):
+class Benchmark5(Frame1):
     '''50% there'''
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_8 = ""
+        image_path_8 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/50%.png"
         self.load_image(image_path_8)
 
         self.button()
 
-class Frame9(Frame1):
+class Benchmark6(Frame1):
     '''60% there'''
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_9 = ""
+        image_path_9 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/60%.png"
         self.load_image(image_path_9)
 
         self.button()
 
-class Frame10(Frame1):
+class Benchmark7(Frame1):
     '''70% there'''
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_10 = ""
+        image_path_10 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/70%.png"
         self.load_image(image_path_10)
 
         self.button()
 
-class Frame11(Frame1):
+class Benchmark8(Frame1):
     '''80% there'''
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_11 = ""
+        image_path_11 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/80%.png"
         self.load_image(image_path_11)
 
         self.button()
 
-class Frame12(Frame1):
-    '''80% there'''
-    def __init__(self, parent, controller):
-        super().__init__(parent, controller)
-
-        image_path_12 = ""
-        self.load_image(image_path_12)
-
-        self.button()
-
-class Frame13(Frame1):
+class Benchmark9(Frame1):
     '''90% there'''
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_13 = ""
-        self.load_image(image_path_13)
+        image_path_12 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/90%.png"
+        self.load_image(image_path_12)
 
         self.button()
 
-class Frame14(Frame1):
+class Benchmark10(Frame1):
     '''100% there'''
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_14 = ""
+        image_path_14 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/100%.png"
         self.load_image(image_path_14)
 
 if __name__ == "__main__":
-
     main = MainPage()
     main.geometry("400x300")
     main.mainloop()
