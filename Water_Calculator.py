@@ -55,7 +55,7 @@ class  Water_Calculator:
 
     def final_intake(self):
         """Calculate and print the final water intake."""
-        water_intake_oz = self.TDEE * 0.5
+        water_intake_oz = self.TDEE * 0.03
         water_intake_cups = water_intake_oz * 0.125
         print(f"Your daily water goal is {water_intake_oz:.2f} ounces, or {water_intake_cups:.2f} cups!")
 
