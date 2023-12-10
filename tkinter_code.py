@@ -16,7 +16,7 @@ class MainPage(tk.Tk):
 
         #container.grid_rowconfigure or .grid_columnconfigure or .grid_packconfigure #backbone of page switching function
 
-        for f in (Frame1, InfoPage, I_Drank_Water_Screen, Water_Calculator_Screen, Benchmark1, Benchmark2, ): #frame3): #change framex to whatever class we created for each frame
+        for f in (Frame1, InfoPage, I_Drank_Water_Screen, Water_Calculator_Screen, Benchmark1, Benchmark2, Benchmark3, Benchmark4, Benchmark5, Benchmark6, Benchmark7, Benchmark8, Benchmark9, Benchmark10): #frame3): #change framex to whatever class we created for each frame
             frame = f(container, self)
             self.frames[f] = frame
             frame.grid(row = 1, column = 1, sticky = "nsew") # sticky determines where to position the widget in its cell, and the string contains n = north, s = south, e = east, w = west
@@ -44,13 +44,14 @@ class Frame1(tk.Frame):
 
         self.load_images()
 
-    # should this method be moved into MainPage since Homepage should take you to InfoPage first and not Water_Calculator_Screen?
+    # QUESTION FOR TA: should this method be moved into MainPage since Homepage should take you to InfoPage first and not Water_Calculator_Screen?
     def button(self):
 
         button = tk.Button(self, command = lambda: controller.show_frame(Water_Calculator_Screen))
 
         button.grid(row = 1, column = 0, pady = 10, padx = 10)
 
+    # QUESTION FOR TA: is this okay how it is or is there a way to make it case specific for each frame?
     def load_image(self):
 
         image_path = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/MainPage().png"
@@ -60,7 +61,7 @@ class Frame1(tk.Frame):
 
 class InfoPage(Frame1):
     '''Info Page (Enter your information below). '''
-    # !!!!!! we need to add more for this one than others because it takes user input so likely needs more than just a button
+    # QUESTION FOR TA:!!!!!! we need to add more for this one than others because it takes user input so likely needs more than just a button
 
     def __init__(self, parent, controller):
 
@@ -86,7 +87,7 @@ class I_Drank_Water_Screen(Frame1):
 
 class Water_Calculator_Screen(Frame1):
     ''' Water Calculator page'''
-    # !!!!!!!! we need to add some sort of user input here as well as it is the screen that will update on the backend
+    # QUESTION FOR TA: !!!!!!!! we need to add some sort of user input here as well as it is the screen that will update on the backend
 
     def __init__(self, parent, controller):
 
