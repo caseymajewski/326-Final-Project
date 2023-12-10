@@ -41,7 +41,7 @@ class Frame1(tk.Frame):
 
         self.load_images()
 
-        # is there a way for us to use inheritance here as well? the only thing that changes between classes is the button takes you to the next frame in the sequence
+    # should this method be moved into MainPage since Homepage should take you to InfoPage first and not Water_Calculator_Screen?
     def button(self):
 
         button = tk.Button(self, command = lambda: controller.show_frame(Water_Calculator_Screen))
@@ -55,9 +55,9 @@ class Frame1(tk.Frame):
         self.image = PhotoImage(file = image_path)
 
 
-class Frame2(Frame1):
+class InfoPage(Frame1):
     '''Info Page (Enter your information below). '''
-    # we need to add more for this one than others because it takes user input so likely needs more than just a button
+    # !!!!!! we need to add more for this one than others because it takes user input so likely needs more than just a button
 
     def __init__(self, parent, controller):
 
@@ -67,11 +67,23 @@ class Frame2(Frame1):
         self.load_image(image_path_2)
 
 
-        button2 = tk.Button(self, command = lambda: controller.show_frame(Frame3))
+        button2 = tk.Button(self, command = lambda: controller.show_frame(I_Drank_Water_Screen))
         button2.grid(row = 1, column = 0, pady = 10, padx = 10)
+
+class I_Drank_Water_Screen(Frame1):
+    '''Log Water Screen (takes you to water calculator screen)'''
+
+    def __init__(self, parent, controller):
+        super().__init__(parent, controller)
+
+        image_path_3 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/I Drank Water.png"
+        self.load_image(image_path_3)
+
+        self.button()
 
 class Water_Calculator_Screen(Frame1):
     ''' Water Calculator page'''
+    # !!!!!!!! we need to add some sort of user input here as well as it is the screen that will update on the backend
 
     def __init__(self, parent, controller):
 
@@ -80,34 +92,24 @@ class Water_Calculator_Screen(Frame1):
         image_path_wc = ""
         self.load_image(image_path_wc)
 
-class Frame3(Frame1):
-    '''Log Water Screen (takes you to 10%)'''
-
-    def __init__(self, parent, controller):
-        super().__init__(parent, controller)
-
-        image_path_3 = ""
-        self.load_image(image_path_3)
-
-        self.button()
-
-class Frame4(Frame1):
+class Benchmark1(Frame1):
     '''10% there'''
 
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_4 = ""
+        image_path_4 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/10%.png"
         self.load_image(image_path_4)
 
         self.button()
 
-class Frame5(Frame1):
+class Benchmark2(Frame1):
     '''20% there'''
+
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_5 = ""
+        image_path_5 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/20%.png"
         self.load_image(image_path_5)
 
         self.button()
