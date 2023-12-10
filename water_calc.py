@@ -1,42 +1,33 @@
+import sys
+
 class  Water_Calculator:
      
-    def __init__(self, age, sex, weight, height activity_level):
-        """Initialize the Calculator class."""
+    def __init__(self, age, sex, weight, height, activity_level):
+        """Initialize the Calculator class.
+        list of attributes
+        """
         self.age = age
-        self.sex = sex.lower() 
+        self.sex = sex 
         self.weight = weight
         self.height = height
-        self.activity_level = activity_level.lower()  # 'inactive', 'lightly_active', 'moderately_active', 'very_active', 'extra_active'
-
-    
-    def user_data (self,age, sex, weight, height, activity_level):
-        """Collect user data .
-         We need to collect age, sex, weight in punds, height in inches, activity level. The activity level optons are:
-             sedentary, lightly active, moderatly active, very active, extra active"""
-        
-        name = input("Enter your name")
-        age = input("Hi " + name + "! Please enter your age: ")
-        sex = input("Please indicate your sex (m/f): ")
-        weight = input("Please enter your weight in pounds: ")
-        height = input("Please enter your height in inches: ")
-        activity_level = input("Please rate your activity level from 1-5: ")
+        self.activity_level = activity_level 
 
 
-
-
-    def calc_BMR(self,age, sex, weight, height):
+    def calc_BMR(self):
         """BMR is aBasal Metabolic Rate based off of the Harris-Benedict equation """
        
-        if sex == "m":
-            BMR_f= 66+(6.23(weight))+(12.7(height))-(6.8(age))
-        
-        elif sex== "f":
-            BMR_m= 655+(4.35(weight))+ (4.7(height))-(4.7(age))
+        if self.sex == "m":
+            bmr = 66 + (6.23(self.weight)) + (12.7(self.height)) - (6.8(self.age))   
+        elif self.sex == "f":
+            bmr = 655 + (4.35(self.weight)) + (4.7(self.height)) - (4.7(self.age))
         else:
-            raise ValueError("Invalid value for 'sex'. Please use 'male' or 'female'.")
+            raise ValueError("Invalid value for 'sex'. Please use 'M' for male or 'F' for female.")
+        
+        return bmr
+        
 
     
-    def adjust_for_activity_level(bmr, activity_level):
+    def adjust_for_activity_level(self, bmr):
         # adjust BMR based off of how active you are
         activity_multipliers = {
         1: 1.2,
@@ -46,15 +37,15 @@ class  Water_Calculator:
         5: 1.9
         }
 
-        if activity_level.lower() in activity_multipliers:
-           TDEE=bmr * activity_multipliers[activity_level.lower()] # TDEE is total daily energy expenditure
+        if self.activity_level in activity_multipliers:
+           tdee = bmr * activity_multipliers[self.activity_level] # TDEE is total daily energy expenditure
         else:
-            raise ValueError("Invalid value for 'activity_level'. Please use one of: 'sedentary', 'lightly_active', 'moderately_active', 'very_active', 'extra_active'.")
-    
-    def final_intake(self, TDEE,):
-        water_intake_oz= TDEE(0.5)
-        water_intake_cups=water_intake_oz(0.125)
-        print(" Your daily water goal is {water_intake_oz} ounces, or {water_intake_cups} cups!")
+            raise ValueError("Invalid value for 'activity_level'. Please rate your activity level on a scale from 1-5.")
         
-
-
+        return tdee
+    
+    def final_intake(self, tdee):
+        water_intake_oz = tdee(0.5)
+        water_intake_cups = water_intake_oz(0.125)
+        return (f"Your daily water goal is {water_intake_oz} ounces, or {water_intake_cups} cups!")
+    
