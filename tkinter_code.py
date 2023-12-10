@@ -1,32 +1,3 @@
-<<<<<<< HEAD
-from tkinter import * as Tk
-import pygame
-from pygame.locals import *
-
-pygame.init()
-
-class TerrapinWaterTracker():
-
-    def __init__(self, master):
-            self.master = master
-            self.master.title("Terrapin Water Tracker")
-    
-            self.screen= pygame.display.set_mode((800,600))
-            pygame.display.set_caption(" Your Terrarium!")
-            self.water_level=0
-            self.age_var= StringVar()
-            self.sex_var=StringVar()
-            self.weight_var= StringVar()
-            self.activity_level_var=IntVar()
-
-            self.create_user_input_widgets
-
-
-            self.label= tk .Label(master, text = "Terrapin Water Tracker")
-            self.label.pack()
-    
-    def widget(self):
-=======
 from tkinter import *
 import tkinter as tk
 
@@ -37,24 +8,18 @@ class MainPage(tk.Tk):
     def __init__(self, *args, **kwargs): #asteriks are shortcuts, normally would pass in variables, instead of limiting to just x,y you can do asterik args which takes in a sample argument. Think of SQL, * allow you to put an unlimited amount of variables in there. Ifyou were to do the sum of *args and pass in 3 numbers it will add 3 numbers together. Keywords of args and kwargs mean: args stand for argument and kwargs stand for keyword arguments.
 
         tk.Tk.__init__(self, *args, **kwargs)
->>>>>>> 0977619d7f3cffeb494d5e46a21cc1c9db796161
 
         container = tk.Frame(self)
         container.grid(row = 1, column = 1)
 
         self.frames = {}
 
-        #container.grid_rowconfigure or .grid_columnconfigure or .grid_packconfigure #backbone of page switching function 
+        #container.grid_rowconfigure or .grid_columnconfigure or .grid_packconfigure #backbone of page switching function
 
-<<<<<<< HEAD
-        # puts label on the screen
-        myLabel.grid(row=0, column=0)
-=======
         for f in (Frame1, Frame2): #frame3): #change framex to whatever class we created for each frame
             frame = f(container, self)
             self.frames[f] = frame
             frame.grid(row = 1, column = 1, sticky = "nsew") # sticky determines where to position the widget in its cell, and the string contains n = north, s = south, e = east, w = west
->>>>>>> 0977619d7f3cffeb494d5e46a21cc1c9db796161
 
     def show_frame(self, controller):
         '''Function designed to switch between frames in tkinter. '''
