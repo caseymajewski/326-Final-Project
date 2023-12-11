@@ -14,6 +14,10 @@ class MainPage(tk.Tk):
 
         self.frames = {}
 
+        # simpledialog for text? 1920 x 1080 - default full screen
+        button = tk.Button(self, command = lambda: controller.show_frame(Water_Calculator_Screen))
+
+        button.grid(row = 1, column = 0, pady = 10, padx = 10)
         #container.grid_rowconfigure or .grid_columnconfigure or .grid_packconfigure #backbone of page switching function
 
         for f in (Frame1, InfoPage, I_Drank_Water_Screen, Water_Calculator_Screen, Benchmark1, Benchmark2, Benchmark3, Benchmark4, Benchmark5, Benchmark6, Benchmark7, Benchmark8, Benchmark9, Benchmark10): #frame3): #change framex to whatever class we created for each frame
@@ -28,8 +32,9 @@ class MainPage(tk.Tk):
         frame.tkraise()
         # next line depends on how we are going about it
 
-        start_button= Button( root, text ="Start", padx=50, pady=50)
+        start_button= Button(root, text ="Start", padx=50, pady=50)
         start_button.grid( row=7, column= 8)
+
 
 
 class Frame1(tk.Frame):
@@ -44,17 +49,10 @@ class Frame1(tk.Frame):
 
         self.load_images()
 
-    # QUESTION FOR TA: should this method be moved into MainPage since Homepage should take you to InfoPage first and not Water_Calculator_Screen?
-    def button(self):
-
-        button = tk.Button(self, command = lambda: controller.show_frame(Water_Calculator_Screen))
-
-        button.grid(row = 1, column = 0, pady = 10, padx = 10)
-
     # QUESTION FOR TA: is this okay how it is or is there a way to make it case specific for each frame?
     def load_image(self):
 
-        image_path = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/MainPage().png"
+        image_path = "MainPage().png"
 
         self.image = PhotoImage(file = image_path)
 
@@ -76,7 +74,7 @@ class I_Drank_Water_Screen(Frame1):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_3 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/I Drank Water.png"
+        image_path_3 = "I Drank Water.png"
         self.load_image(image_path_3)
 
         self.button()
@@ -98,7 +96,7 @@ class Benchmark1(Frame1):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_4 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/10%.png"
+        image_path_4 = "10%.png"
         self.load_image(image_path_4)
 
         self.button()
@@ -109,7 +107,7 @@ class Benchmark2(Frame1):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_5 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/20%.png"
+        image_path_5 = "20%.png"
         self.load_image(image_path_5)
 
         self.button()
@@ -119,7 +117,7 @@ class Benchmark3(Frame1):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_6 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/30%.png"
+        image_path_6 = "30%.png"
         self.load_image(image_path_6)
 
         self.button()
@@ -129,7 +127,7 @@ class Benchmark4(Frame1):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_7 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/40%.png"
+        image_path_7 = "40%.png"
         self.load_image(image_path_7)
 
         self.button()
@@ -139,7 +137,7 @@ class Benchmark5(Frame1):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_8 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/50%.png"
+        image_path_8 = "50%.png"
         self.load_image(image_path_8)
 
         self.button()
@@ -149,7 +147,7 @@ class Benchmark6(Frame1):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_9 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/60%.png"
+        image_path_9 = "60%.png"
         self.load_image(image_path_9)
 
         self.button()
@@ -159,7 +157,7 @@ class Benchmark7(Frame1):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_10 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/70%.png"
+        image_path_10 = "70%.png"
         self.load_image(image_path_10)
 
         self.button()
@@ -169,7 +167,7 @@ class Benchmark8(Frame1):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_11 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/80%.png"
+        image_path_11 = "80%.png"
         self.load_image(image_path_11)
 
         self.button()
@@ -179,7 +177,7 @@ class Benchmark9(Frame1):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_12 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/90%.png"
+        image_path_12 = "90%.png"
         self.load_image(image_path_12)
 
         self.button()
@@ -189,10 +187,10 @@ class Benchmark10(Frame1):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_14 = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/100%.png"
+        image_path_14 = "100%.png"
         self.load_image(image_path_14)
 
 if __name__ == "__main__":
     main = MainPage()
-    main.geometry("400x300")
+    main.geometry("1920x1080")
     main.mainloop()
