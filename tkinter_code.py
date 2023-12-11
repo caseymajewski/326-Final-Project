@@ -1,5 +1,6 @@
 from tkinter import *
 import tkinter as tk
+import terrarium as t
 
 # this class basically inherits from the tkinter module as a subclass of the tkinter, which is why there are parameters in the class
 class MainPage(tk.Tk):
@@ -20,7 +21,7 @@ class MainPage(tk.Tk):
         button.grid(row = 1, column = 0, pady = 10, padx = 10)
         #container.grid_rowconfigure or .grid_columnconfigure or .grid_packconfigure #backbone of page switching function
 
-        for f in (Frame1, InfoPage, I_Drank_Water_Screen, Water_Calculator_Screen, Benchmark1, Benchmark2, Benchmark3, Benchmark4, Benchmark5, Benchmark6, Benchmark7, Benchmark8, Benchmark9, Benchmark10): #frame3): #change framex to whatever class we created for each frame
+        for f in (Frame1, InfoPage, Water_Calculator_Screen, Benchmark1, Benchmark2, Benchmark3, Benchmark4, Benchmark5, Benchmark6, Benchmark7, Benchmark8, Benchmark9, Benchmark10): #frame3): #change framex to whatever class we created for each frame
             frame = f(container, self)
             self.frames[f] = frame
             frame.grid(row = 1, column = 1, sticky = "nsew") # sticky determines where to position the widget in its cell, and the string contains n = north, s = south, e = east, w = west
@@ -65,7 +66,7 @@ class InfoPage(Frame1):
 
         super().__init__(parent, controller)
 
-        Water_Calculator().get_user_input()
+        t.Water_Calculator().get_user_input()
 
 
 class Water_Calculator_Screen(Frame1):
