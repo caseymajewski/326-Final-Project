@@ -21,6 +21,7 @@ class MainPage(tk.Tk):
         button.grid(row = 1, column = 0, pady = 10, padx = 10)
         #container.grid_rowconfigure or .grid_columnconfigure or .grid_packconfigure #backbone of page switching function
 
+        # do if/else and a lot of conditionals here instead of a for loop because it makes more sense for the benchmark percentage range
         for f in (Frame1, InfoPage, Water_Calculator_Screen, Benchmark1, Benchmark2, Benchmark3, Benchmark4, Benchmark5, Benchmark6, Benchmark7, Benchmark8, Benchmark9, Benchmark10): #frame3): #change framex to whatever class we created for each frame
             # input name of frame here i.e. InfoPage = input name of frame here i.e. InfoPage(container, self)
             self.frame# [input name of frame here i.e. InfoPage] = frame
