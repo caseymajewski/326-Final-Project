@@ -68,17 +68,6 @@ class InfoPage(Frame1):
         Water_Calculator().get_user_input()
 
 
-class I_Drank_Water_Screen(Frame1):
-    '''Log Water Screen (takes you to water calculator screen)'''
-
-    def __init__(self, parent, controller):
-        super().__init__(parent, controller)
-
-        image_path_3 = "I Drank Water.png"
-        self.load_image(image_path_3)
-
-        self.button()
-
 class Water_Calculator_Screen(Frame1):
     ''' Water Calculator page'''
     # QUESTION FOR TA: !!!!!!!! we need to add some sort of user input here as well as it is the screen that will update on the backend
