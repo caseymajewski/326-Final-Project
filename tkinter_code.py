@@ -16,13 +16,13 @@ class MainPage(tk.Tk):
         self.frames = {}
 
         # simpledialog for text? 1920 x 1080 - default full screen
-        button = tk.Button(self, command = lambda: controller.show_frame(Water_Calculator_Screen))
+        button = tk.Button(self, command = lambda: controller.show_frame(Water_Calculator_PopUp))
 
         button.grid(row = 1, column = 0, pady = 10, padx = 10)
         #container.grid_rowconfigure or .grid_columnconfigure or .grid_packconfigure #backbone of page switching function
 
         # do if/else and a lot of conditionals here instead of a for loop because it makes more sense for the benchmark percentage range
-        for f in (Frame1, InfoPage, Water_Calculator_Screen, Benchmark1, Benchmark2, Benchmark3, Benchmark4, Benchmark5, Benchmark6, Benchmark7, Benchmark8, Benchmark9, Benchmark10): #frame3): #change framex to whatever class we created for each frame
+        for f in (Frame1, InfoPopUp, Water_Calculator_PopUp, Benchmark1, Benchmark2, Benchmark3, Benchmark4, Benchmark5, Benchmark6, Benchmark7, Benchmark8, Benchmark9, Benchmark10): #frame3): #change framex to whatever class we created for each frame
             # input name of frame here i.e. InfoPage = input name of frame here i.e. InfoPage(container, self)
             self.frame# [input name of frame here i.e. InfoPage] = frame
             # input name of frame here i.e. InfoPage.grid(row = 1, column = 1, sticky = "nsew") # sticky determines where to position the widget in its cell, and the string contains n = north, s = south, e = east, w = west
@@ -36,7 +36,6 @@ class MainPage(tk.Tk):
 
         start_button= Button(root, text ="Start", padx=50, pady=50)
         start_button.grid( row=7, column= 8)
-
 
 
 class Frame1(tk.Frame):
@@ -59,9 +58,8 @@ class Frame1(tk.Frame):
         self.image = PhotoImage(file = image_path)
 
 
-class InfoPage(Frame1):
-    '''Info Page (Enter your information below). '''
-    # QUESTION FOR TA:!!!!!! we need to add more for this one than others because it takes user input so likely needs more than just a button
+class InfoPopUp(Frame1):
+    '''Info Pop Up (Enter your information below). '''
 
     def __init__(self, parent, controller):
 
@@ -70,8 +68,8 @@ class InfoPage(Frame1):
         t.Water_Calculator().get_user_input()
 
 
-class Water_Calculator_Screen(Frame1):
-    ''' Water Calculator page'''
+class Water_Calculator_PopUp(Frame1):
+    ''' Water Calculator Pop Up'''
     # QUESTION FOR TA: !!!!!!!! we need to add some sort of user input here as well as it is the screen that will update on the backend
 
     def __init__(self, parent, controller):
