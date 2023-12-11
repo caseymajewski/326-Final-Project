@@ -1,6 +1,6 @@
 # 326-Final-Project
 
-   class  Water_Calculator:
+class  Water_Calculator():
 
     def __init__(self):
         """Initialize the Calculator class."""
@@ -8,22 +8,22 @@
         self.bmr = None
         self.TDEE = None
 
-    '''def get_user_input(self):
+    def get_user_input(self):
         """Get user input for age, sex, weight, height, and activity level."""
         self.age = int(input("Enter your age: "))
         self.sex = input("Enter your sex (m/f): ").lower()
         self.weight = float(input("Enter your weight in pounds: "))
         self.height = float(input("Enter your height in inches: "))
-        self.activity_level = int(input("Enter your activity level from 1-5: "))'''
+        self.activity_level = int(input("Enter your activity level from 1-5: "))
 
-    # Casey: this is my experimentation with merging the Water Calculator class with our tkinter code
-    def get_user_input(self):
+    '''def get_user_input(self):
         """Get user input for age, sex, weight, height, and activity level."""
         self.age = simpledialog.askinteger("Input", "Enter your age: ")
         self.sex = simpledialog.askstring("Input", "Enter your sex (m/f): ").lower()
         self.weight = simpledialog.askfloat("Input", "Enter your weight in pounds: ")
         self.height = simpledialog.askfloat("Input", "Enter your height in inches: ")
         self.activity_level = simpledialog.askinteger("Input", "Enter your activity level from 1-5: ")
+    '''
 
     def calc_BMR(self):
         """Calculate BMR based on the Harris-Benedict equation."""
@@ -95,7 +95,7 @@ class WaterTracker:
 
 
 
-    def update_terrarium_water_level(self, amount):
+    #def update_terrarium_water_level(self, amount):
         """
         Update the water level in the terrarium.
 
