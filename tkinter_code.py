@@ -52,7 +52,7 @@ class Frame1(tk.Frame):
     # QUESTION FOR TA: is this okay how it is or is there a way to make it case specific for each frame?
     def load_image(self):
 
-        image_path = "MainPage().png"
+        image_path = "MainPage.png"
 
         self.image = PhotoImage(file = image_path)
 
