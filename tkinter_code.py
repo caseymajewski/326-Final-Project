@@ -22,9 +22,9 @@ class MainPage(tk.Tk):
         #container.grid_rowconfigure or .grid_columnconfigure or .grid_packconfigure #backbone of page switching function
 
         for f in (Frame1, InfoPage, Water_Calculator_Screen, Benchmark1, Benchmark2, Benchmark3, Benchmark4, Benchmark5, Benchmark6, Benchmark7, Benchmark8, Benchmark9, Benchmark10): #frame3): #change framex to whatever class we created for each frame
-            frame = f(container, self)
-            self.frames[f] = frame
-            frame.grid(row = 1, column = 1, sticky = "nsew") # sticky determines where to position the widget in its cell, and the string contains n = north, s = south, e = east, w = west
+            # input name of frame here i.e. InfoPage = input name of frame here i.e. InfoPage(container, self)
+            self.frame# [input name of frame here i.e. InfoPage] = frame
+            # input name of frame here i.e. InfoPage.grid(row = 1, column = 1, sticky = "nsew") # sticky determines where to position the widget in its cell, and the string contains n = north, s = south, e = east, w = west
 
     def show_frame(self, controller):
         '''Function designed to switch between frames in tkinter. '''
