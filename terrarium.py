@@ -76,7 +76,7 @@ class WaterTracker(Water_Calculator):
         self.water_goal = water_goal
       
 
-    def check_water_intake(water_goal):
+    def check_water_intake(self,water_goal, amount):
         """
         Check the water intake for the user.
 
@@ -106,8 +106,8 @@ class WaterTracker(Water_Calculator):
         amount (float): The amount of water to update the terrarium water level with.
         """
         frame_index = int(percentage / 10)  # Assuming 10% intervals
-        frame_name = f"Benchmark{frame_index}"
-        frame = self.frames.get(frame_name)
+        benchmark_name = f"Benchmark{frame_index}"
+        frame = self.get(benchmark_name)
         
         if frame:
             # Update the water level in the corresponding frame
