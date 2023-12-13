@@ -15,7 +15,7 @@ class  Water_Calculator():
         self.sex = simpledialog.askstring("Input", "Enter your sex (m/f):").lower()
         self.weight = simpledialog.askfloat("Input", "Enter your weight in pounds:")
         self.height = simpledialog.askfloat("Input", "Enter your height in inches:")
-        self.activity_level = simpledialog.askinteger("Input", "Enter your activity level from 1-5:")
+        self.activity_level = simpledialog.askinteger("Input", "Enter your activity level from 1-5. 5 is very active. 1 is inactive:")
 
     '''def get_user_input(self):
         """Get user input for age, sex, weight, height, and activity level."""
