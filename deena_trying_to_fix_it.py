@@ -1,6 +1,8 @@
 from tkinter import *
 import tkinter as tk
 import terrarium as t
+from tkinter.simpledialog import askfloat
+
 
 class MainPage(Tk):
     def __init__(self, *args, **kwargs):
@@ -27,6 +29,9 @@ class MainPage(Tk):
         # Create and add a Start button to the GUI
         start_button = Button(self, text="Start", padx=50, pady=50, command=lambda: self.show_frame(InfoPopUp))
         start_button.grid(row=7, column=8)
+        # Start the main loop
+        self.mainloop()
+
 class Benchmark1(Frame):
     ''' Homepage'''
 
@@ -34,18 +39,34 @@ class Benchmark1(Frame):
         Frame.__init__(self, parent)
         self.controller = controller
         self.load_image()
+        self.button()  # Add this line to create the "I drank water" button
 
     def load_image(self, image_path="MainPage.png"):
         self.image = PhotoImage(file=image_path)
 
+    def button(self):
+        # Create a button that prompts the user to enter the amount of water they drank
+        drink_button = Button(self, text="I drank water", command=self.drink_water)
+        drink_button.grid(row=2, column=2)
 
+    def drink_water(self):
+        # Prompt the user to enter the amount of water they drank
+        amount = askfloat("Enter Water Intake", "Enter the amount of water you drank (in ounces):")
+
+        # Perform any necessary actions with the entered amount (e.g., update terrarium water level)
+        self.update_terrarium_water_level(amount)
+
+    def update_terrarium_water_level(self, amount):
+        # Implement the logic to update the terrarium water level with the entered amount
+        # This can involve communication with your terrarium module or other relevant actions
+        print(f"Updating terrarium water level with {amount} ounces")
 
 class Benchmark2(Benchmark1):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
         image_path_5 = "20%.png"
         self.load_image(image_path_5)
-        self.button()
+
 
 class Benchmark3(Benchmark1):
     def __init__(self, parent, controller):
