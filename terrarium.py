@@ -1,5 +1,7 @@
 # 326-Final-Project
 from tkinter import simpledialog
+from tkinter import messagebox
+
 
 class  Water_Calculator():
 
@@ -56,8 +58,10 @@ class  Water_Calculator():
         """Calculate and print the final water intake."""
         water_intake_oz = self.TDEE * 0.03
         water_intake_cups = water_intake_oz * 0.125
-        print(f"Your daily water goal is {water_intake_oz:.2f} ounces, or {water_intake_cups:.2f} cups!")
+        message = f"Your daily water goal is {water_intake_oz:.2f} ounces, or {water_intake_cups:.2f} cups!"
 
+        # Show the message in a popup
+        messagebox.showinfo("Water Intake Result", message)
 
 
 calculator = Water_Calculator()

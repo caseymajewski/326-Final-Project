@@ -17,8 +17,8 @@ class MainPage(tk.Tk):
             self.frames[F] = frame
             frame.grid(row=1, column=1, sticky="nsew")
 
-        # Show the initial frame
-        self.show_frame(Frame1)
+        # Show the initial frame (change this to the desired initial frame)
+        self.show_frame(Benchmark1)
 
     def show_frame(self, controller):
         frame = self.frames[controller]
@@ -34,14 +34,23 @@ class MainPage(tk.Tk):
 
 
 class Frame1(tk.Frame):
+
+    ''' Homepage'''
+
     def __init__(self, parent, controller):
+
         tk.Frame.__init__(self, parent)
+
         self.controller = controller
+
         self.load_image()
 
     def load_image(self):
+
         image_path = "MainPage.png"
+
         self.image = PhotoImage(file=image_path)
+
 
 
 class InfoPage(Frame1):
