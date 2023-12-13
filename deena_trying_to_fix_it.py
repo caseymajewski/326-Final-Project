@@ -2,7 +2,7 @@ from tkinter import *
 import tkinter as tk
 import terrarium as t
 from tkinter.simpledialog import askfloat
-
+from terrarium import WaterTracker 
 
 class MainPage(Tk):
     def __init__(self, *args, **kwargs):
@@ -22,15 +22,13 @@ class MainPage(Tk):
         # Show the initial frame (change this to the desired initial frame)
         self.show_frame(Benchmark1)
 
+        # Create and add a Start button to the GUI
+        start_button = Button(self, text="Start", padx=50, pady=50, command=lambda: self.show_frame(frame))
+        start_button.grid(row=7, column=8)
+
     def show_frame(self, controller):
         frame = self.frames[controller]
         frame.tkraise()
-
-        # Create and add a Start button to the GUI
-        start_button = Button(self, text="Start", padx=50, pady=50, command=lambda: self.show_frame(InfoPopUp))
-        start_button.grid(row=7, column=8)
-        # Start the main loop
-        self.mainloop()
 
 class Benchmark1(Frame):
     ''' Homepage'''
@@ -60,8 +58,9 @@ class Benchmark1(Frame):
         # Implement the logic to update the terrarium water level with the entered amount
         # This can involve communication with your terrarium module or other relevant actions
         print(f"Updating terrarium water level with {amount} ounces")
-
-class Benchmark2(Benchmark1):
+        self.update_terrarium_water_level(amount)
+        
+class Benchmark2(Benchmark1): 
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
         image_path_5 = "20%.png"
@@ -124,5 +123,7 @@ class Benchmark10(Benchmark1):
         self.load_image(image_path_14)
         self.button()
 
+
 if __name__ == "__main__":
     main = MainPage()
+    main.mainloop()
