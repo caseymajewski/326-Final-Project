@@ -143,8 +143,9 @@ class MainPage(Tk):
 
         # Create instances of frames and add them to the frames dictionary
         if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake():
-            self.water_tracker.check_water_intake() 
-            return Benchmark0
+            self.water_tracker.check_water_intake()
+            if 0 <= self.water_tracker.check_water_intake() <= 10:
+                return Benchmark0
         
         
         
@@ -155,24 +156,7 @@ class MainPage(Tk):
         
         
         
-        if water_intake_cups < water_goal and:
-            return Benchmark2
-        if water_intake_cups < water_goal and:
-            return Benchmark3
-        if water_intake_cups < water_goal and:
-            return Benchmark4
-        if water_intake_cups < water_goal and:
-            return Benchmark5
-        if water_intake_cups < water_goal and:
-            return Benchmark6
-        if water_intake_cups < water_goal and:
-            return Benchmark7
-        if water_intake_cups < water_goal and:
-            return Benchmark8
-        if water_intake_cups < water_goal and:
-            return Benchmark9
-        if water_intake_cups == water_goal:
-            return Benchmark10
+    
         '''for f in (Benchmark1, Benchmark2, Benchmark3, Benchmark4, Benchmark5, Benchmark6, Benchmark7, Benchmark8, Benchmark9, Benchmark10):
             frame = F(container, self, self.water_tracker)
             self.frames[F] = frame
