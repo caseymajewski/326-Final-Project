@@ -2,7 +2,6 @@ from tkinter import *
 import tkinter as tk
 from tkinter import simpledialog
 from tkinter.simpledialog import askfloat
-from terrarium import WaterTracker 
 from tkinter import Frame, PhotoImage, Button
 from terrarium import WaterTracker, Water_Calculator
 from button import Button
@@ -138,8 +137,22 @@ class MainPage(Tk):
         self.water_tracker = WaterTracker()
 
         # Create instances of frames and add them to the frames dictionary
+<<<<<<< HEAD
         if water_intake_cups < water_goal and:
+=======
+        if WaterTracker.user_water_intake < Water_Calculator.final_intake() and Water_Calculator.check_water_intake :
+>>>>>>> 0bbf568e734781374738861265bfa4bd1351d9ee
             return Benchmark1
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         if water_intake_cups < water_goal and:
             return Benchmark2
         if water_intake_cups < water_goal and:
