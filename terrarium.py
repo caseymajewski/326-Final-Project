@@ -79,6 +79,7 @@ class WaterTracker(Water_Calculator):
         super().__init__()
         self.user_water_intake = 0
         self.water_goal = self.TDEE * 0.03
+        
 
 
     def check_water_intake(self, amount):
@@ -90,17 +91,18 @@ class WaterTracker(Water_Calculator):
         """
         # Calculate the user's total water intake
         self.user_water_intake += amount
-
+        percentage = round((self.user_water_intake / self.water_goal) * 100, -1)
         # Compare the user's water intake with the target water goal
         if self.user_water_intake >= self.water_goal:
             print("Congratulations! You have met your daily water goal.")
             # Calculate the percentage based on the user's total water intake and the water goal
-            percentage = round((self.user_water_intake / self.water_goal) * 100, -1)
+            
             # Update the terrarium water level
             self.update_terrarium_water_level(amount, percentage)
         else:
             print(f"You need to drink {self.water_goal - self.user_water_intake} more ounces of water to reach your goal.")
-
+        return percentage
+    
     def update_terrarium_water_level(self, amount, percentage):
         """
         Update the water level in the terrarium.
@@ -112,6 +114,9 @@ class WaterTracker(Water_Calculator):
         frame_index = int(percentage / 10)  # Assuming 10% intervals
         benchmark_name = f"Benchmark{frame_index}"
         frame = self.get(benchmark_name)
+
+        amount=0
+        
 
         if frame:
             # Update the water level in the corresponding frame
