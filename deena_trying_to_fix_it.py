@@ -73,7 +73,6 @@ calculator.adjust_for_activity_level()
 calculator.final_intake()
 
 
-
 class WaterTracker(Water_Calculator):
 
     def __init__(self):
@@ -139,10 +138,30 @@ class MainPage(Tk):
         self.water_tracker = WaterTracker()
 
         # Create instances of frames and add them to the frames dictionary
-        for F in (Benchmark1, Benchmark2, Benchmark3, Benchmark4, Benchmark5, Benchmark6, Benchmark7, Benchmark8, Benchmark9, Benchmark10):
+        if water_intake_cups < water_goal and :
+            return Benchmark1
+        if water_intake_cups < water_goal and:
+            return Benchmark2
+        if water_intake_cups < water_goal and:
+            return Benchmark3
+        if water_intake_cups < water_goal and:
+            return Benchmark4
+        if water_intake_cups < water_goal and:
+            return Benchmark5
+        if water_intake_cups < water_goal and:
+            return Benchmark6
+        if water_intake_cups < water_goal and:
+            return Benchmark7
+        if water_intake_cups < water_goal and:
+            return Benchmark8
+        if water_intake_cups < water_goal and:
+            return Benchmark9
+        if water_intake_cups == water_goal:
+            return Benchmark10
+        '''for f in (Benchmark1, Benchmark2, Benchmark3, Benchmark4, Benchmark5, Benchmark6, Benchmark7, Benchmark8, Benchmark9, Benchmark10):
             frame = F(container, self, self.water_tracker)
             self.frames[F] = frame
-            frame.grid(row=1, column=1, sticky="nsew")
+            frame.grid(row=1, column=1, sticky="nsew")'''
 
         # Show the initial frame (change this to the desired initial frame)
         self.show_frame(Benchmark1)
@@ -150,10 +169,6 @@ class MainPage(Tk):
     def show_frame(self, controller):
         frame = self.frames[controller]
         frame.tkraise()
-
-
-
-
 
 class Benchmark1(Frame):
     def drink_water(self):
