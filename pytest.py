@@ -5,16 +5,34 @@ def test_terrarium():
     tests all the outputs of terrarium
     """
 
-    water = tm.Water_Calculator
-    age = water.get_user_input.age
-    sex = water.get_user_input.sex
-    weight = water.get_user_input.weight
-    height = water.get_user_input.height
-    activity_level = water.get_user_input.activity_level
+    water_calc = tm.WaterCalculator
+    age = water_calc.get_user_input.age
+    sex = water_calc.get_user_input.sex
+    weight = water_calc.get_user_input.weight
+    height = water_calc.get_user_input.height
+    activity_level = water_calc.get_user_input.activity_level
 
-    assert water.get_user_input(age, int) and age > 0
-    assert water.get_user_input(sex, str) and (sex == "m" or sex == "f")
-    assert water.get_user_input(weight, int) and weight > 0
-    assert water.get_user_input(height, int) and height > 0
-    assert water.get_user_input(activity_level, int) and (activity_level >= 1 or activity_level <= 5)
+    assert water_calc.get_user_input(age, int) and age > 0
+    assert water_calc.get_user_input(sex, str) and (sex == "m" or sex == "f")
+    assert water_calc.get_user_input(weight, int) and weight > 0
+    assert water_calc.get_user_input(height, int) and height > 0
+    assert water_calc.get_user_input(activity_level, int) and (activity_level >= 1 or activity_level <= 5)
+
+    bmr = water_calc.calc_BMR.bmr
+    assert water_calc.calc_BMR(bmr, int)
+    assert water_calc.calc_BMR(sex = "m", weight = 180, height = 70, age = 35) == 1838.4
+    assert water_calc.calc_BMR(sex = "f", weight = 130, height = 64, age = 25) == 1403.8
+    assert water_calc.calc_BMR()
+    assert water_calc.calc_BMR()
+
+    adjust = water_calc.adjust_for_activity_level.TDEE
+    assert water_calc.adjust_for_activity_level(adjust, int)
+    assert water_calc.adjust_for_activity_level(activity_multipliers = 1)
+    assert water_calc.adjust_for_activity_level(activity_multipliers = 2)
+    assert water_calc.adjust_for_activity_level(bmr = 1403.8, activity_multipliers = 3) == 2175.89
+    assert water_calc.adjust_for_activity_level(activity_multipliers = 4)
+    assert water_calc.adjust_for_activity_level(activity_multipliers = 5)
+
+    water_tracker = tm.WaterTracker
+    percentage = water_tracker.check_water_intake(percentage, float) and percentage > 0
     

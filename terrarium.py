@@ -1,24 +1,49 @@
+<<<<<<< HEAD
 from tkinter import *
 import tkinter as tk
 from tkinter import simpledialog, messagebox
 from tkinter.simpledialog import askfloat
 from tkinter import Frame
 from button import ImageButtonApp
+=======
+# 326-Final-Project
+from tkinter import simpledialog
+from tkinter import messagebox
+from tkinter import Frame, PhotoImage, Button
+from tkinter.simpledialog import askfloat
+from tkinter import PhotoImage
 
-class WaterCalculator():
+
+
+#changed names
+class  Water_Calculator():
+>>>>>>> 48bb9f71de557ce9b9cc92a9ca307dcb0ac45bf5
+
     def __init__(self):
+        """Initialize the Calculator class."""
         self.get_user_input()
         self.bmr = None
         self.TDEE = None
 
     def get_user_input(self):
+        """Get user input for age, sex, weight, height, and activity level."""
         self.age = simpledialog.askinteger("Input", "Enter your age:")
         self.sex = simpledialog.askstring("Input", "Enter your sex (m/f):")
         self.weight = simpledialog.askfloat("Input", "Enter your weight in pounds:")
         self.height = simpledialog.askfloat("Input", "Enter your height in inches:")
         self.activity_level = simpledialog.askinteger("Input", "Enter your activity level from 1-5. 5 is very active. 1 is inactive:")
 
+    '''def get_user_input(self):
+        """Get user input for age, sex, weight, height, and activity level."""
+        self.age = simpledialog.askinteger("Input", "Enter your age: ")
+        self.sex = simpledialog.askstring("Input", "Enter your sex (m/f): ").lower()
+        self.weight = simpledialog.askfloat("Input", "Enter your weight in pounds: ")
+        self.height = simpledialog.askfloat("Input", "Enter your height in inches: ")
+        self.activity_level = simpledialog.askinteger("Input", "Enter your activity level from 1-5: ")
+    '''
+
     def calc_BMR(self):
+        """Calculate BMR based on the Harris-Benedict equation."""
         if self.sex == "m":
             self.bmr = 66 + (6.23 * self.weight) + (12.7 * self.height) - (6.8 * self.age)
         elif self.sex == "f":
@@ -28,7 +53,15 @@ class WaterCalculator():
         return self.bmr
 
     def adjust_for_activity_level(self):
-        activity_multipliers = {1: 1.2, 2: 1.375, 3: 1.55, 4: 1.725, 5: 1.9}
+        """Adjust BMR based on the user's activity level."""
+        activity_multipliers = {
+            1: 1.2,
+            2: 1.375,
+            3: 1.55,
+            4: 1.725,
+            5: 1.9
+        }
+
         if self.activity_level in activity_multipliers:
             self.TDEE = self.bmr * activity_multipliers[self.activity_level]
         else:
@@ -36,57 +69,82 @@ class WaterCalculator():
         return self.TDEE
 
     def final_intake(self):
-        try:
-            self.calc_BMR()
-            self.adjust_for_activity_level()
-            water_intake_oz = self.TDEE * 0.03
-            water_intake_cups = water_intake_oz * 0.125
-            message = f"Your daily water goal is {water_intake_oz:.2f} ounces, or {water_intake_cups:.2f} cups!"
-            messagebox.showinfo("Water Intake Result", message)
-        except ValueError as e:
-            messagebox.showerror("Error", str(e))
+        """Calculate and print the final water intake."""
+        water_intake_goal_oz = self.TDEE * 0.03
+        water_intake__goal_cups = water_intake_goal_oz * 0.125
+        message = f"Your daily water goal is {water_intake_goal_oz:.2f} ounces, or {water_intake__goal_cups:.2f} cups!"
+        
 
-class WaterTracker(WaterCalculator):
+        # Show the message in a popup
+        messagebox.showinfo("Water Intake Result", message)
+
+
+calculator = Water_Calculator()
+calculator.calc_BMR()
+calculator.adjust_for_activity_level()
+calculator.final_intake()
+
+
+
+class WaterTracker(Water_Calculator):
     def __init__(self):
-        super().__init__()
-        self.user_water_intake = 0
-        self.calculate_water_goal()
+        """Initialize the WaterTracker class.
+         Args: 
+         Percentage- defaults to None for now, represents the percentage of the user's water intake"""
+        self.percentage = None
 
-    def calculate_water_goal(self):
-        try:
-            self.calc_BMR()
-            self.adjust_for_activity_level()
-            self.water_goal = self.TDEE * 0.03
-        except ValueError as e:
-            messagebox.showerror("Error", str(e))
-            self.water_goal = 0
+    def check_water_intake(self, amount, water_intake_goal_oz):
+        """
+        Check the water intake for the user.
 
-    def check_water_intake(self):
+        Parameters:
+        amount (float): The amount of water the user drank today.
+        """
+        # Initialize the user's water intake to zero
         user_water_intake = 0
-        while user_water_intake < self.water_goal:
-            user_water_intake += float(input("How much water have you drank today?: "))
-            percentage = round((user_water_intake / self.water_goal) * 100, -1)
-            if percentage >= 100:
+        # Loop until the user's water intake is equal or greater than the target water intake
+        while user_water_intake < water_intake_goal_oz:
+            user_water_intake += float(input("How much water have you drank so far today?: "))
+            # Compare the user's water intake with the target water intake
+            percentage = round((user_water_intake / water_intake_goal_oz) * 100, -1)             
+            if percentage >= water_intake_goal_oz:
                 print("Congratulations! You have met your daily water goal.")
-        self.user_water_intake += user_water_intake
-        percentage = round((self.user_water_intake / self.water_goal) * 100, -1)
-        if self.user_water_intake >= self.water_goal:
+        
+
+        # Compare the user's water intake with the target water goal
+        if self.user_water_intake >= self.water_intake_goal_oz:
             print("Congratulations! You have met your daily water goal.")
+            # Calculate the percentage based on the user's total water intake and the water goal
+            percentage = round((self.user_water_intake / self.water_goal) * 100, -1)
+            # Update the terrarium water level
+            self.update_terrarium_water_level(amount, percentage)
         else:
             print(f"You need to drink {self.water_goal - self.user_water_intake} more ounces of water to reach your goal.")
-        return percentage
 
     def update_terrarium_water_level(self, amount, percentage):
-        frame_index = int(percentage / 10)
+        """
+        Update the water level in the terrarium.
+
+        Parameters:
+        amount (float): The amount of water to update the terrarium water level with.
+        percentage (float): The percentage of the water goal achieved by the user.
+        """
+        percentage = round((user_water_intake / water_intake_goal_oz) * 100, -1)             
+        if percentage >= water_intake_goal_oz:
+        frame_index = int(percentage / 10)  # Assuming 10% intervals
         benchmark_name = f"Benchmark{frame_index}"
         frame = self.get_benchmark_class(percentage)
-        amount = 0
+
         if frame:
-            frame.update_water_level(amount)
+            # Update the water level in the corresponding frame
+            frame.update_water_level(amount)  # Pass the amount parameter to the method
+        else:
+            print(f"Unable to find the corresponding frame for percentage {percentage}%.")
 
     def get_benchmark_class(self, percentage):
-        frame_index = int(percentage / 10)
+        frame_index = int(percentage / 10)  # Assuming 10% intervals
         benchmark_name = f"Benchmark{frame_index}"
+<<<<<<< HEAD
         return globals().get(benchmark_name)
 
 
@@ -256,3 +314,6 @@ if __name__ == "__main__":
     img9 = '90%.png'
     img10 = '100%.png'
         
+=======
+        return self.frames.get(benchmark_name)
+>>>>>>> 48bb9f71de557ce9b9cc92a9ca307dcb0ac45bf5
