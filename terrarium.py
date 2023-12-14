@@ -226,17 +226,6 @@ class MainPage(Tk):
         else:
             print(f"Unable to find the corresponding benchmark for percentage {percentage}%.")
         
-        
-        
-        
-        
-        
-        
-    
-        '''for f in (Benchmark1, Benchmark2, Benchmark3, Benchmark4, Benchmark5, Benchmark6, Benchmark7, Benchmark8, Benchmark9, Benchmark10):
-            frame = F(container, self, self.water_tracker)
-            self.frames[F] = frame
-            frame.grid(row=1, column=1, sticky="nsew")'''
 
         # Show the initial frame (change this to the desired initial frame)
         self.show_frame(Benchmark1)
