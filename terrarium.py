@@ -85,10 +85,10 @@ class WaterTracker:
         # Loop until the user's water intake is equal or greater than the target water intake
         while user_water_intake < water_goal:
             # Ask the user how much water they have drank today
-           # user_water_intake += float(input("How much water have you drank today? : "))
+            user_water_intake += float(input("How much water have you drank today?: "))
             # Compare the user's water intake with the target water intake
             percentage = round((user_water_intake / water_goal) * 100, -1)
-            if user_water_intake >= water_goal:
+            if percentage >= water_intake_oz:
                 print("Congratulations! You have met your daily water goal.")
             
             #else: print(f"You need to drink {water_goal - user_water_intake} more ounces of water to reach your goal.")
