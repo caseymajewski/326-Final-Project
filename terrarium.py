@@ -121,3 +121,7 @@ class WaterTracker(Water_Calculator):
             frame.update_water_level(amount)  # Pass the amount parameter to the method
         else:
             print(f"Unable to find the corresponding frame for percentage {percentage}%.")
+    def get_benchmark_class(self, percentage):
+        frame_index = int(percentage / 10)  # Assuming 10% intervals
+        benchmark_name = f"Benchmark{frame_index}"
+        return self.get(benchmark_name)

@@ -48,11 +48,9 @@ class Benchmark1(Frame):
 
         # Transition to the corresponding benchmark
         if benchmark_class:
-            self.controller.show_frame(benchmark_class)
+            self.controller.show_frame(benchmark_class.__name__)
         else:
             print(f"Unable to find the corresponding benchmark for percentage {percentage}%.")
-
-
 
 
 
