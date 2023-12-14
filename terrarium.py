@@ -76,13 +76,13 @@ calculator.final_intake()
 
 
 class WaterTracker(Water_Calculator):
-    def __init__(self, water_goal):
+
+    def __init__(self):
         """Initialize the WaterTracker class."""
         super().__init__()
-        self.water_goal = water_goal
         self.user_water_intake = 0
-        self.calc_BMR()
-        self.adjust_for_activity_level()
+        self.water_goal = self.TDEE * 0.03
+
 
     def check_water_intake(self, amount):
         """
@@ -121,7 +121,8 @@ class WaterTracker(Water_Calculator):
             frame.update_water_level(amount)  # Pass the amount parameter to the method
         else:
             print(f"Unable to find the corresponding frame for percentage {percentage}%.")
+    
     def get_benchmark_class(self, percentage):
         frame_index = int(percentage / 10)  # Assuming 10% intervals
         benchmark_name = f"Benchmark{frame_index}"
-        return self.get(benchmark_name)
+        return self.frames.get(benchmark_name)
