@@ -144,7 +144,7 @@ class MainPage(Tk):
         # Create instances of frames and add them to the frames dictionary
         if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake():
             self.water_tracker.check_water_intake() 
-            return Benchmark1
+            return Benchmark0
         
         
         
@@ -185,6 +185,14 @@ class MainPage(Tk):
         frame = self.frames[controller]
         frame.tkraise()
 
+class Benchmark0(Frame):
+    def drink_water(self):
+        """Prompt the user to enter the amount of water they drank."""
+        user_water_intake = askfloat("Enter Water Intake", "Enter the amount of water you drank (in ounces):")
+        
+        # Call the WaterTracker's method to check water intake
+        self.water_tracker.check_water_intake(user_water_intake)
+       
 class Benchmark1(Frame):
     def drink_water(self):
         """Prompt the user to enter the amount of water they drank."""
