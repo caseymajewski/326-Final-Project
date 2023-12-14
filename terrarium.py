@@ -192,8 +192,12 @@ class MainPage(Tk):
                 return Benchmark8
         if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake():
             water_intake = self.water_tracker.check_water_intake()
-            if 90.1 <= water_intake and water_intake <= 10:
+            if 90.1 <= water_intake and water_intake <= 99:
                 return Benchmark9
+        if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake():
+            water_intake = self.water_tracker.check_water_intake()
+            if 100 <= water_intake and water_intake <= 110:
+                return Benchmark10
         
             
         
