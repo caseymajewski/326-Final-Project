@@ -4,11 +4,15 @@ from tkinter import simpledialog
 from tkinter.simpledialog import askfloat
 from tkinter import Frame, PhotoImage, Button
 from button import Button
+from tkinter import messagebox
 class  Water_Calculator():
 
     def __init__(self):
-        """Initialize the Calculator class."""
-        self.get_user_input()
+        """Initialize the Calculator class.
+        Args: 
+            self
+            """
+        self.get_user_input() 
         self.bmr = None
         self.TDEE = None
 
@@ -21,13 +25,14 @@ class  Water_Calculator():
         self.activity_level = simpledialog.askinteger("Input", "Enter your activity level from 1-5. 5 is very active. 1 is inactive:")
 
     '''def get_user_input(self):
-        """Get user input for age, sex, weight, height, and activity level."""
+        """Get user input for age, sex, weight, height, and activity level.""" 
         self.age = simpledialog.askinteger("Input", "Enter your age: ")
         self.sex = simpledialog.askstring("Input", "Enter your sex (m/f): ").lower()
         self.weight = simpledialog.askfloat("Input", "Enter your weight in pounds: ")
         self.height = simpledialog.askfloat("Input", "Enter your height in inches: ")
         self.activity_level = simpledialog.askinteger("Input", "Enter your activity level from 1-5: ")
     '''
+    #so then we delete this? ^^^
 
     def calc_BMR(self):
         """Calculate BMR based on the Harris-Benedict equation."""
@@ -60,29 +65,20 @@ class  Water_Calculator():
         water_intake_oz = self.TDEE * 0.03
         water_intake_cups = water_intake_oz * 0.125
         message = f"Your daily water goal is {water_intake_oz:.2f} ounces, or {water_intake_cups:.2f} cups!"
-        water_goal= water_intake_oz
+        self.water_goal= water_intake_oz
 
         # Show the message in a popup
-        messagebox.showinfo("Water Intake Result", message)
-
-
-calculator = Water_Calculator()
-calculator.calc_BMR()
-calculator.adjust_for_activity_level()
-calculator.final_intake()
+        messagebox.showinfo("Water Intake Result", message) #not recognizing messagebox for some reason
+        return self.water_goal
 
 
 class WaterTracker(Water_Calculator):
 
     def __init__(self):
         """Initialize the WaterTracker class."""
-        super().__init__()
-        self.user_water_intake = 0
-        self.water_goal = self.TDEE * 0.03
-        
+        super().__init__()        
 
-
-    def check_water_intake(self, amount):
+    def check_water_intake(self):
         """
         Check the water intake for the user.
 
@@ -90,31 +86,21 @@ class WaterTracker(Water_Calculator):
         amount (float): The amount of water the user drank today.
         """
         # Initialize the user's water intake to zero
-        user_water_intake = 0
+        self.user_water_intake = 0
         # Loop until the user's water intake is equal or greater than the target water intake
-        while user_water_intake < water_goal:
+        while self.user_water_intake < self.water_goal:
             # Ask the user how much water they have drank today
-            user_water_intake += float(input("How much water have you drank today?: "))
-            # Compare the user's water intake with the target water intake
-            percentage = round((user_water_intake / water_goal) * 100, -1)
-            if percentage >= water_intake_oz:
-                print("Congratulations! You have met your daily water goal.")
-            
-            #else: print(f"You need to drink {water_goal - user_water_intake} more ounces of water to reach your goal.")
-        # Calculate the user's total water intake
-        self.user_water_intake += amount
-        percentage = round((self.user_water_intake / self.water_goal) * 100, -1)
-        # Compare the user's water intake with the target water goal
-        if self.user_water_intake >= self.water_goal:
-            print("Congratulations! You have met your daily water goal.")
-            # Calculate the percentage based on the user's total water intake and the water goal
-            
-            # Update the terrarium water level
-            self.update_terrarium_water_level(amount, percentage)
-        else:
-            print(f"You need to drink {self.water_goal - self.user_water_intake} more ounces of water to reach your goal.")
-        return percentage
-    
+            try:
+                amount+= float(input("How much water have you drank today?: "))
+                self.user_water_intake += amount
+            # Compare the user's water intake with the target water intake            
+                percentage = round((self.user_water_intake / self.water_goal) * 100, -1)
+                if percentage >= 100:
+                    print("Congratulations! You have met your daily water goal.")
+                else: 
+                    print(f"Keep Going! You only drank {percentage}% of your daily water goal) /n You need to drink {self.user_water_intake - self.user_water_intake} more ounces of water to reach your goal")
+            except ValueError: 
+                print("Invalid Input. Please enter a numeric value!")
     def update_terrarium_water_level(self, amount, percentage):
         """
         Update the water level in the terrarium.
