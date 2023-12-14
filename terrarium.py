@@ -146,7 +146,13 @@ class MainPage(Tk):
             self.water_tracker.check_water_intake()
             if 0 <= self.water_tracker.check_water_intake() <= 10:
                 return Benchmark0
+            
         
+            
+            
+        
+        
+
         
         
         
