@@ -134,9 +134,11 @@ class MainPage(Tk):
 
         # Create an instance of WaterTracker with the calculated water goal
         self.water_tracker = WaterTracker()
+        self.Water_Calculator= Water_Calculator
 
         # Create instances of frames and add them to the frames dictionary
-        if WaterTracker.user_water_intake < Water_Calculator.final_intake() and Water_Calculator.check_water_intake :
+        if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake():
+            self.water_tracker.check_water_intake() 
             return Benchmark1
         
         
@@ -185,10 +187,7 @@ class Benchmark1(Frame):
         
         # Call the WaterTracker's method to check water intake
         self.water_tracker.check_water_intake(user_water_intake)
-
-        # Get the benchmark class based on the current percentage
-        percentage = round((self.water_tracker.user_water_intake / self.water_tracker.water_goal) * 100, -1)
-        benchmark_class = self.water_tracker.get_benchmark_class(percentage)
+       
 
         # Transition to the corresponding benchmark
         if benchmark_class:
