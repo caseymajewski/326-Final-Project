@@ -72,6 +72,7 @@ class WaterTrackerWithButton(WaterTracker):
         else:
             print(f"You need to drink {self.water_goal - self.user_water_intake} more ounces of water to reach your goal.")
 
+
 class MainPage(Frame):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -109,14 +110,13 @@ class Benchmark1(Frame):
             self.water_tracker.check_water_intake(user_water_intake)
 
 
-    class Benchmark2(Benchmark1):
-            def __init__(self, parent, controller, water_tracker):
-                super().__init__(parent, controller, water_tracker)
-                self.load_image("20%.png")
-                image_path="20%.png"
+class Benchmark2(Benchmark1):
+    def __init__(self, parent, controller, water_tracker):
+        super().__init__(parent, controller, water_tracker)
+        self.load_image("20%.png")
 
-            def load_image(self, image_path):
-                image = PhotoImage(file=image_path)
+    def load_image(self, image_path):
+        image = PhotoImage(file=image_path)
 
 
 class Benchmark3(Benchmark1):
