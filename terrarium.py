@@ -1,23 +1,13 @@
-<<<<<<< HEAD
+# 326-Final-Project
 from tkinter import *
 import tkinter as tk
 from tkinter import simpledialog, messagebox
 from tkinter.simpledialog import askfloat
 from tkinter import Frame
 from button import ImageButtonApp
-=======
-# 326-Final-Project
-from tkinter import simpledialog
-from tkinter import messagebox
-from tkinter import Frame, PhotoImage, Button
-from tkinter.simpledialog import askfloat
-from tkinter import PhotoImage
-
-
 
 #changed names
 class  Water_Calculator():
->>>>>>> 48bb9f71de557ce9b9cc92a9ca307dcb0ac45bf5
 
     def __init__(self):
         """Initialize the Calculator class."""
@@ -131,9 +121,9 @@ class WaterTracker(Water_Calculator):
         """
         percentage = round((user_water_intake / water_intake_goal_oz) * 100, -1)             
         if percentage >= water_intake_goal_oz:
-        frame_index = int(percentage / 10)  # Assuming 10% intervals
-        benchmark_name = f"Benchmark{frame_index}"
-        frame = self.get_benchmark_class(percentage)
+            frame_index = int(percentage / 10)  # Assuming 10% intervals
+            benchmark_name = f"Benchmark{frame_index}"
+            frame = self.get_benchmark_class(percentage)
 
         if frame:
             # Update the water level in the corresponding frame
@@ -144,7 +134,6 @@ class WaterTracker(Water_Calculator):
     def get_benchmark_class(self, percentage):
         frame_index = int(percentage / 10)  # Assuming 10% intervals
         benchmark_name = f"Benchmark{frame_index}"
-<<<<<<< HEAD
         return globals().get(benchmark_name)
 
 
@@ -157,7 +146,7 @@ class MainPage(Tk):
 
         # Create an instance of WaterTracker with the calculated water goal
         self.water_tracker = WaterTracker()
-        self.Water_Calculator= WaterCalculator
+        self.Water_Calculator= Water_Calculator
 
         # Create instances of frames and add them to the frames dictionary
         if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake(self):
@@ -314,6 +303,3 @@ if __name__ == "__main__":
     img9 = '90%.png'
     img10 = '100%.png'
         
-=======
-        return self.frames.get(benchmark_name)
->>>>>>> 48bb9f71de557ce9b9cc92a9ca307dcb0ac45bf5
