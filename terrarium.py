@@ -201,10 +201,8 @@ class MainPage(Tk):
                 return Benchmark10
         
             
-        
             
-            
-        class Benchmark1(MainPage):
+class Benchmark1(MainPage):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(self, parent, controller, water_tracker)
         self.image_app = ImageButtonApp(img)
