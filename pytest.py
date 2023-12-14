@@ -22,9 +22,16 @@ def test_terrarium():
     assert water_calc.calc_BMR(bmr, int)
     assert water_calc.calc_BMR(sex = "m", weight = 180, height = 70, age = 35) == 1838.4
     assert water_calc.calc_BMR(sex = "f", weight = 130, height = 64, age = 25) == 1403.8
+    assert water_calc.calc_BMR()
+    assert water_calc.calc_BMR()
 
     adjust = water_calc.adjust_for_activity_level.TDEE
     assert water_calc.adjust_for_activity_level(adjust, int)
+    assert water_calc.adjust_for_activity_level(activity_multipliers = 1)
+    assert water_calc.adjust_for_activity_level(activity_multipliers = 2)
+    assert water_calc.adjust_for_activity_level(bmr = 1403.8, activity_multipliers = 3) == 2175.89
+    assert water_calc.adjust_for_activity_level(activity_multipliers = 4)
+    assert water_calc.adjust_for_activity_level(activity_multipliers = 5)
 
     water_tracker = tm.WaterTracker
     percentage = water_tracker.check_water_intake(percentage, float) and percentage > 0
