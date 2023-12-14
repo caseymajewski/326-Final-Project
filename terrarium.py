@@ -147,9 +147,41 @@ class MainPage(Tk):
             if 0 <= water_intake and water_intake <= 10:
                 return Benchmark0
         if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake():
-            self.water_tracker.check_water_intake()
-            if 10.1 <= self.water_tracker.check_water_intake() <= 20:
+            water_intake = self.water_tracker.check_water_intake()
+            if 10.1 <= water_intake and water_intake <= 20:
                 return Benchmark1
+        if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake():
+            water_intake = self.water_tracker.check_water_intake()
+            if 20.1 <= water_intake and water_intake <= 30:
+                return Benchmark2
+        if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake():
+            water_intake = self.water_tracker.check_water_intake()
+            if 30.1 <= water_intake and water_intake <= 40:
+                return Benchmark3
+        if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake():
+            water_intake = self.water_tracker.check_water_intake()
+            if 40.1 <= water_intake and water_intake <= 50:
+                return Benchmark4
+        if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake():
+            water_intake = self.water_tracker.check_water_intake()
+            if 50.1 <= water_intake and water_intake <= 60:
+                return Benchmark5
+        if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake():
+            water_intake = self.water_tracker.check_water_intake()
+            if 60.1 <= water_intake and water_intake <= 70:
+                return Benchmark6
+        if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake():
+            water_intake = self.water_tracker.check_water_intake()
+            if 70.1 <= water_intake and water_intake <= 80:
+                return Benchmark7
+        if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake():
+            water_intake = self.water_tracker.check_water_intake()
+            if 80.1 <= water_intake and water_intake <= 90:
+                return Benchmark8
+        if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake():
+            water_intake = self.water_tracker.check_water_intake()
+            if 90.1 <= water_intake and water_intake <= 10:
+                return Benchmark9
         
             
         
