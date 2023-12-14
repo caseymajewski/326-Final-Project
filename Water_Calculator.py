@@ -50,6 +50,7 @@ class  Water_Calculator:
         if self.activity_level in activity_multipliers:
             self.TDEE = self.bmr * activity_multipliers[self.activity_level]
         else:
+<<<<<<< Updated upstream
             raise ValueError("Invalid value for 'activity_level'. Please use values 1-5.")
         return self.TDEE
 
@@ -66,6 +67,25 @@ calculator.calc_BMR()
 calculator.adjust_for_activity_level()
 calculator.final_intake()
 
+=======
+            raise ValueError("Invalid value for 'activity_level'. Please use one of: 'sedentary', 'lightly_active', 'moderately_active', 'very_active', 'extra_active'.")
+    
+    def final_intake(self, TDEE, weight):
+     
+# Recommended water intake as a range (in ounces per pound of body weight)
+        lower_bound_ratio = 0.5
+        upper_bound_ratio = 1.0
+
+        # Calculate the recommended water intake range
+        lower_bound = weight * lower_bound_ratio
+        upper_bound = weight * upper_bound_ratio
+
+        # Calculate the total water intake based on TDEE
+        water_goal = (lower_bound + upper_bound) / 2.0
+
+        print("Your daily water goal is {water_goal} ounces!")
+        
+>>>>>>> Stashed changes
        
         
 
