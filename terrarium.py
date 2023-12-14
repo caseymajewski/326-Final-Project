@@ -7,7 +7,7 @@ from tkinter import PhotoImage
 
 
 
-
+#changed names
 class  Water_Calculator():
 
     def __init__(self):
