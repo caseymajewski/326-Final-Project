@@ -172,7 +172,11 @@ class MainPage(Tk):
         frame = self.frames[controller]
         frame.tkraise()
 
-class Benchmark1(Frame):
+class Benchmark1(MainPage):
+    def __init__(self, parent, controller, water_tracker):
+        super().__init__(self, parent, controller, water_tracker)
+        self.image_app = ImageButtonApp(img)
+        
     def drink_water(self):
         """Prompt the user to enter the amount of water they drank."""
         user_water_intake = askfloat("Enter Water Intake", "Enter the amount of water you drank (in ounces):")
@@ -189,6 +193,7 @@ class Benchmark1(Frame):
             self.controller.show_frame(benchmark_class.__name__)
         else:
             print(f"Unable to find the corresponding benchmark for percentage {percentage}%.")
+        
 
 class Benchmark2(Benchmark1): 
     def __init__(self, parent, controller, water_tracker):
@@ -255,3 +260,14 @@ class Benchmark10(Benchmark1):
 if __name__ == "__main__":
     main = MainPage()
     main.mainloop()
+
+    img = Benchmark1('10%.png')
+    img2 = Benchmark2('20%.png')
+    img3 = Benchmark3('30%.png')
+    img4 = Benchmark4('40%.png')
+    img5 = Benchmark5('50%.png')
+    img6 = Benchmark6('60%.png')
+    img7 = Benchmark7('70%.png')
+    img8 = Benchmark8('80%.png')
+    img9 = Benchmark9('90%.png')
+    img10 = Benchmark10('100%.png')
