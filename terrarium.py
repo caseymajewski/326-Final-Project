@@ -2,8 +2,7 @@ from tkinter import *
 import tkinter as tk
 from tkinter import simpledialog, messagebox
 from tkinter.simpledialog import askfloat
-from tkinter import Frame, PhotoImage, Button
-from terrarium import WaterTracker, Water_Calculator
+from tkinter import Frame
 from button import ImageButtonApp
 
 class WaterCalculator():
@@ -95,15 +94,15 @@ class MainPage(Tk):
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
 
-        container = Frame(self)
-        container.grid(row=1, column=1)
+        '''container = Frame(self)
+        container.grid(row=1, column=1)'''
 
         # Create an instance of WaterTracker with the calculated water goal
         self.water_tracker = WaterTracker()
-        self.Water_Calculator= Water_Calculator
+        self.Water_Calculator= WaterCalculator
 
         # Create instances of frames and add them to the frames dictionary
-        if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake():
+        if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake(self):
             water_intake = self.water_tracker.check_water_intake()
             if 0 <= water_intake and water_intake <= 10:
                 return Benchmark0
@@ -148,13 +147,19 @@ class MainPage(Tk):
             if 100 <= water_intake and water_intake <= 110:
                 return Benchmark10
         
+
             
-            
-class Benchmark1(MainPage):
+class Benchmark(MainPage):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(self, parent, controller, water_tracker)
-        self.image_app = ImageButtonApp(img)
-        
+        self.parent = parent
+        self.controller = controller
+        self.water_tracker = water_tracker
+    
+    def show_frame(self, controller):
+        frame = self.frames[controller]
+        frame.tkraise()
+
     def drink_water(self):
         """Prompt the user to enter the amount of water they drank."""
         user_water_intake = askfloat("Enter Water Intake", "Enter the amount of water you drank (in ounces):")
@@ -176,11 +181,9 @@ class Benchmark1(MainPage):
         # Show the initial frame (change this to the desired initial frame)
         self.show_frame(Benchmark1)
 
-    def show_frame(self, controller):
-        frame = self.frames[controller]
-        frame.tkraise()
 
-class Benchmark0(Frame):
+
+class Benchmark0(Benchmark):
     def drink_water(self):
         """Prompt the user to enter the amount of water they drank."""
         user_water_intake = askfloat("Enter Water Intake", "Enter the amount of water you drank (in ounces):")
@@ -188,62 +191,52 @@ class Benchmark0(Frame):
         # Call the WaterTracker's method to check water intake
         self.water_tracker.check_water_intake(user_water_intake)
        
-class Benchmark1(Frame):
-    def drink_water(self):
-        """Prompt the user to enter the amount of water they drank."""
-        user_water_intake = askfloat("Enter Water Intake", "Enter the amount of water you drank (in ounces):")
-        
-        # Call the WaterTracker's method to check water intake
-        self.water_tracker.check_water_intake(user_water_intake)
-       
+class Benchmark1(Benchmark):
+    def __init__(self, parent, controller, water_tracker):
+        super().__init__(parent, controller, water_tracker)
+        self.image_app = ImageButtonApp(img)
 
-        # Transition to the corresponding benchmark
-        if benchmark_class:
-            self.controller.show_frame(benchmark_class.__name__)
-        else:
-            print(f"Unable to find the corresponding benchmark for percentage {percentage}%.")
-
-class Benchmark2(Benchmark1): 
+class Benchmark2(Benchmark): 
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
         self.image_app = ImageButtonApp(img2)
 
-class Benchmark3(Benchmark1):
+class Benchmark3(Benchmark):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
         self.image_app = ImageButtonApp(img3)
 
-class Benchmark4(Benchmark1):
+class Benchmark4(Benchmark):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
         self.image_app = ImageButtonApp(img4)
 
-class Benchmark5(Benchmark1):
+class Benchmark5(Benchmark):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
         self.image_app = ImageButtonApp(img5)
 
-class Benchmark6(Benchmark1):
+class Benchmark6(Benchmark):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
         self.image_app = ImageButtonApp(img6)
 
-class Benchmark7(Benchmark1):
+class Benchmark7(Benchmark):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
         self.image_app = ImageButtonApp(img7)
 
-class Benchmark8(Benchmark1):
+class Benchmark8(Benchmark):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
         self.image_app = ImageButtonApp(img8)
 
-class Benchmark9(Benchmark1):
+class Benchmark9(Benchmark):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
         self.image_app = ImageButtonApp(img9)
 
-class Benchmark10(Benchmark1):
+class Benchmark10(Benchmark):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
         self.image_app = ImageButtonApp(img10)
@@ -252,14 +245,14 @@ if __name__ == "__main__":
     main = MainPage()
     main.mainloop()
 
-    img = Benchmark1('10%.png')
-    img2 = Benchmark2('20%.png')
-    img3 = Benchmark3('30%.png')
-    img4 = Benchmark4('40%.png')
-    img5 = Benchmark5('50%.png')
-    img6 = Benchmark6('60%.png')
-    img7 = Benchmark7('70%.png')
-    img8 = Benchmark8('80%.png')
-    img9 = Benchmark9('90%.png')
-    img10 = Benchmark10('100%.png')
+    img = '10%.png'
+    img2 = '20%.png'
+    img3 = '30%.png'
+    img4 = '40%.png'
+    img5 = '50%.png'
+    img6 = '60%.png'
+    img7 = '70%.png'
+    img8 = '80%.png'
+    img9 = '90%.png'
+    img10 = '100%.png'
         
