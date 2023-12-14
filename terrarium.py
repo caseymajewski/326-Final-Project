@@ -64,6 +64,8 @@ class  Water_Calculator():
         water_intake_goal_oz = self.TDEE * 0.03
         water_intake__goal_cups = water_intake_goal_oz * 0.125
         message = f"Your daily water goal is {water_intake_goal_oz:.2f} ounces, or {water_intake__goal_cups:.2f} cups!"
+        return water_intake_goal_oz
+    
         
 
         # Show the message in a popup
@@ -86,6 +88,7 @@ class WaterTracker(Water_Calculator):
         self.adjust_for_activity_level()  # Call this to calculate self.TDEE
         self.water_goal = self.TDEE * 0.03
 
+
     def check_water_intake(self, amount, water_intake_goal_oz):
         """
         Check the water intake for the user.
@@ -96,16 +99,19 @@ class WaterTracker(Water_Calculator):
         # Calculate the user's total water intake
         self.user_water_intake += amount
 
+        percentage = round((self.user_water_intake / self.water_goal) * 100, -1)
+        
         # Compare the user's water intake with the target water goal
         if self.user_water_intake >= self.water_intake_goal_oz:
             print("Congratulations! You have met your daily water goal.")
             # Calculate the percentage based on the user's total water intake and the water goal
-            percentage = round((self.user_water_intake / self.water_goal) * 100, -1)
+            
             # Update the terrarium water level
             self.update_terrarium_water_level(amount, percentage)
         else:
             print(f"You need to drink {self.water_goal - self.user_water_intake} more ounces of water to reach your goal.")
-
+            
+        return percentage
     def update_terrarium_water_level(self, amount, percentage):
         """
         Update the water level in the terrarium.
