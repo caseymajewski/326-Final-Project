@@ -3,6 +3,7 @@ import tkinter as tk
 import terrarium as t
 from tkinter.simpledialog import askfloat
 from terrarium import WaterTracker 
+from tkinter import Frame, PhotoImage, Button
 
 class MainPage(Tk):
     def __init__(self, *args, **kwargs):
@@ -12,7 +13,7 @@ class MainPage(Tk):
         container.grid(row=1, column=1)
 
         # Create an instance of WaterTracker
-        self.water_tracker = WaterTracker(water_goal=100)  # Replace 100 with the actual water goal
+        self.water_tracker = WaterTracker(water_goal=self.water_goal) 
 
         self.frames = {}
 
@@ -26,41 +27,39 @@ class MainPage(Tk):
         self.show_frame(Benchmark1)
 
         # Create and add a Start button to the GUI
-        start_button = Button(self, text="Start", padx=50, pady=50, command=lambda: self.show_frame(Benchmark10))
-        start_button.grid(row=7, column=8)
+        """start_button = Button(self, text="Start", padx=50, pady=50, command=lambda: self.show_frame(Benchmark10))
+        start_button.grid(row=7, column=8)"""
 
     def show_frame(self, controller):
         frame = self.frames[controller]
         frame.tkraise()
 
 class Benchmark1(Frame):
-    ''' Homepage'''
-
-    def __init__(self, parent, controller, water_tracker):
-        Frame.__init__(self, parent)
-        self.controller = controller
-        self.water_tracker = water_tracker
-        self.load_image()
-        self.button()  # Add this line to create the "I drank water" button
-
-    def load_image(self, image_path="MainPage.png"):
-        self.image = PhotoImage(file=image_path)
-
-    def button(self):
-        # Create a button that prompts the user to enter the amount of water they drank
-        drink_button = Button(self, text="I drank water", command=self.drink_water)
-        drink_button.grid(row=2, column=2)
-
     def drink_water(self):
-        # Prompt the user to enter the amount of water they drank
+        """Prompt the user to enter the amount of water they drank."""
         amount = askfloat("Enter Water Intake", "Enter the amount of water you drank (in ounces):")
         
-        # Call the update method of the WaterTracker with the entered amount
+        # Call the WaterTracker's method to check water intake
         self.water_tracker.check_water_intake(amount)
 
-    def update_terrarium_water_level(self, percentage):
-        # Call the WaterTracker's method to update the terrarium water level
-        self.water_tracker.update_terrarium_water_level(percentage)
+        # Get the benchmark class based on the current percentage
+        percentage = round((self.water_tracker.user_water_intake / self.water_tracker.water_goal) * 100, -1)
+        benchmark_class = self.water_tracker.get_benchmark_class(percentage)
+
+        # Transition to the corresponding benchmark
+        if benchmark_class:
+            self.controller.show_frame(benchmark_class)
+        else:
+            print(f"Unable to find the corresponding benchmark for percentage {percentage}%.")
+
+
+
+
+
+
+
+
+
 
 
 class Benchmark2(Benchmark1): 
