@@ -198,64 +198,47 @@ class Benchmark1(MainPage):
 class Benchmark2(Benchmark1): 
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
-        image_path_5 = "20%.png"
-        self.load_image(image_path_5)
+        self.image_app = ImageButtonApp(img2)
 
 class Benchmark3(Benchmark1):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
-        image_path_6 = "30%.png"
-        self.load_image(image_path_6)
-        self.button()
+        self.image_app = ImageButtonApp(img3)
 
 class Benchmark4(Benchmark1):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
-        image_path_7 = "40%.png"
-        self.load_image(image_path_7)
-        self.button()
+        self.image_app = ImageButtonApp(img4)
 
 class Benchmark5(Benchmark1):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
-        image_path_8 = "50%.png"
-        self.load_image(image_path_8)
-        self.button()
+        self.image_app = ImageButtonApp(img5)
 
 class Benchmark6(Benchmark1):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
-        image_path_9 = "60%.png"
-        self.load_image(image_path_9)
-        self.button()
+        self.image_app = ImageButtonApp(img6)
 
 class Benchmark7(Benchmark1):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
-        image_path_10 = "70%.png"
-        self.load_image(image_path_10)
-        self.button()
+        self.image_app = ImageButtonApp(img7)
 
 class Benchmark8(Benchmark1):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
-        image_path_11 = "80%.png"
-        self.load_image(image_path_11)
-        self.button()
+        self.image_app = ImageButtonApp(img8)
 
 class Benchmark9(Benchmark1):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
-        image_path_12 = "90%.png"
-        self.load_image(image_path_12)
-        self.button()
+        self.image_app = ImageButtonApp(img9)
 
 class Benchmark10(Benchmark1):
     def __init__(self, parent, controller, water_tracker):
         super().__init__(parent, controller, water_tracker)
-        image_path_14 = "100%.png"
-        self.load_image(image_path_14)
-        self.button()
+        self.image_app = ImageButtonApp(img10)
 
 if __name__ == "__main__":
     main = MainPage()
