@@ -5,6 +5,7 @@ from tkinter.simpledialog import askfloat
 from terrarium import WaterTracker 
 from tkinter import Frame, PhotoImage, Button
 from terrarium import WaterTracker, Water_Calculator
+from button import Button
 class  Water_Calculator():
 
     def __init__(self):
@@ -133,12 +134,11 @@ class MainPage(Tk):
         container = Frame(self)
         container.grid(row=1, column=1)
 
-     
         # Create an instance of WaterTracker with the calculated water goal
         self.water_tracker = WaterTracker()
 
         # Create instances of frames and add them to the frames dictionary
-        if water_intake_cups < water_goal and :
+        if water_intake_cups < water_goal and:
             return Benchmark1
         if water_intake_cups < water_goal and:
             return Benchmark2
@@ -187,8 +187,6 @@ class Benchmark1(Frame):
             self.controller.show_frame(benchmark_class.__name__)
         else:
             print(f"Unable to find the corresponding benchmark for percentage {percentage}%.")
-
-
 
 class Benchmark2(Benchmark1): 
     def __init__(self, parent, controller, water_tracker):
