@@ -85,10 +85,9 @@ class Benchmark1(Frame1):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
 
-        image_path_4 = "10%.png"
-        self.load_image(image_path_4)
+        self.image_app = ImageButtonApp(img)
 
-        self.button()
+        
 
 class Benchmark2(Frame1):
     '''20% there'''
@@ -183,3 +182,14 @@ if __name__ == "__main__":
     main = MainPage()
     main.geometry("1920x1080")
     main.mainloop()
+
+    img = Benchmark1('10%.png')
+    img2 = Benchmark2('20%.png')
+    img3 = Benchmark3('30%.png')
+    img4 = Benchmark4('40%.png')
+    img5 = Benchmark5('50%.png')
+    img6 = Benchmark6('60%.png')
+    img7 = Benchmark7('70%.png')
+    img8 = Benchmark8('80%.png')
+    img9 = Benchmark9('90%.png')
+    img10 = Benchmark10('100%.png')

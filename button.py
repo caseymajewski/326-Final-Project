@@ -1,4 +1,4 @@
-from tkinter import *
+'''from tkinter import *
 import tkinter as tk
 from PIL import ImageTk, Image
 
@@ -7,13 +7,13 @@ class Button():
         root = tk.Tk()
 
         root.geometry('1920x1080')
-        Benchmark_2 = Frame(root)
-        Benchmark_2.pack()
-        Benchmark_2.place(anchor = 'center', relx= 0.5, rely = 0.5)
+        frame = Frame(root)
+        frame.pack()
+        frame.place(anchor = 'center', relx= 0.5, rely = 0.5)
 
         img = ImageTk.PhotoImage(Image.open("20%.png"))
 
-        label = Label(Benchmark_2, image = img)
+        label = Label(frame, image = img)
         label.pack()
 
         I_Drank_Water_btn = tk.Button(root, text = "I Drank Water")
@@ -23,9 +23,33 @@ class Button():
 
         root.mainloop()
 
+if __name__ == "__main__":
+    b = Button()
 
-'''btn = tk.Button(root, text = 'I Drank Water', bd = '5', command = root.destroy)
+'''
 
-btn.pack(side = 'top')
+from tkinter import *
+import tkinter as tk
+from PIL import ImageTk, Image
 
-root.mainloop()'''
+class ImageButtonApp:
+    def __init__(self, image_path):
+        root = tk.Tk()
+
+        root.geometry('1920x1080')
+        frame = Frame(root)
+        frame.pack()
+        frame.place(anchor='center', relx=0.5, rely=0.5)
+
+        img = ImageTk.PhotoImage(Image.open(image_path))
+
+        label = Label(frame, image=img)
+        label.pack()
+
+        I_Drank_Water_btn = tk.Button(frame, text="I Drank Water")
+        I_Drank_Water_btn.place(relx=0.75, rely=0.5, anchor='center')
+
+        Exit = tk.Button(frame, text="Exit", command=root.destroy)
+        Exit.place(relx=0.75, rely=0.6, anchor='center')
+
+        root.mainloop()

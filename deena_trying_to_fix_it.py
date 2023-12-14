@@ -4,7 +4,7 @@ from tkinter import simpledialog
 from tkinter.simpledialog import askfloat
 from tkinter import Frame, PhotoImage, Button
 from terrarium import WaterTracker, Water_Calculator
-from button import Button
+from button import ImageButtonApp
 class  Water_Calculator():
 
     def __init__(self):
