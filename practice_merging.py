@@ -1,6 +1,7 @@
 # Casey: this is my experimentation with merging the Water Calculator class with our tkinter code
-import tkinter as tk
+from tkinter import *
 from tkinter import simpledialog
+import tkinter as tk
 
 class  Water_Calculator:
 
@@ -55,18 +56,45 @@ class  Water_Calculator:
 
     def final_intake(self):
         """Calculate and print the final water intake."""
-        water_intake_oz = self.TDEE * 0.03
+        water_intake_oz = self.TDEE * 0.5
         water_intake_cups = water_intake_oz * 0.125
         print(f"Your daily water goal is {water_intake_oz:.2f} ounces, or {water_intake_cups:.2f} cups!")
 
+class Frame1(tk.Frame):
+
+    ''' Homepage'''
+
+    def __init__(self, parent, controller):
+
+        tk.Frame.__init__(self, parent)
+
+        self.controller = controller
+
+       #  self.load_images()
+
+    # QUESTION FOR TA: should this method be moved into MainPage since Homepage should take you to InfoPage first and not Water_Calculator_Screen?
+    '''def button(self):
+
+        button = tk.Button(self, command = lambda: controller.show_frame(Water_Calculator_Screen))
+
+        button.grid(row = 1, column = 0, pady = 10, padx = 10)
+    '''
+    # QUESTION FOR TA: is this okay how it is or is there a way to make it case specific for each frame?
+    def load_image(self):
+
+        image_path = "C:/Users/casey/OneDrive/Documents/GitHub/326-Final-Project/MainPage().png"
+
+        self.image = PhotoImage(file = image_path)
 
 
-calculator = Water_Calculator()
-calculator.calc_BMR()
-calculator.adjust_for_activity_level()
-calculator.final_intake()
+class InfoPage(Frame1):
+    '''Info Page (Enter your information below). '''
+    # QUESTION FOR TA:!!!!!! we need to add more for this one than others because it takes user input so likely needs more than just a button
 
-       
-        
+    def __init__(self, parent, controller):
 
+        super().__init__(parent, controller)
 
+        Water_Calculator().get_user_input()
+
+        # need to add code here that saves the user input to the backend for the program to keep in mind for the daily water intake goal

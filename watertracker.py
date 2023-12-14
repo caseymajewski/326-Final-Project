@@ -20,18 +20,27 @@ class WaterTracker(Water_Calculator):
             # Ask the user how much water they have drank today
            # user_water_intake += float(input("How much water have you drank today? : "))
             # Compare the user's water intake with the target water intake
-            percentage = round((user_water_intake / water_goal) * 100, -1)
+
             if user_water_intake >= water_goal:
                 print("Congratulations! You have met your daily water goal.")
             
             #else: print(f"You need to drink {water_goal - user_water_intake} more ounces of water to reach your goal.")
 
+        percentage = round((user_water_intake / water_goal) * 100, -1)
 
-
-    def update_terrarium_water_level(self, amount):
+    def update_terrarium_water_level(self, amount, percentage):
         """
         Update the water level in the terrarium.
 
         Parameters:
         amount (float): The amount of water to update the terrarium water level with.
         """
+        frame_index = int(percentage / 10)  # Assuming 10% intervals
+        frame_name = f"Benchmark{frame_index}"
+        frame = self.frames.get(frame_name)
+        
+        if frame:
+            # Update the water level in the corresponding frame
+            frame.update_water_level()  # Implement this method in your Benchmark frames
+        else:
+            print(f"Unable to find the corresponding frame for percentage {percentage}%.")
