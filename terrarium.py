@@ -143,8 +143,8 @@ class MainPage(Tk):
 
         # Create instances of frames and add them to the frames dictionary
         if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake():
-            self.water_tracker.check_water_intake()
-            if 0 <= self.water_tracker.check_water_intake() <= 10:
+            water_intake = self.water_tracker.check_water_intake()
+            if 0 <= water_intake and water_intake <= 10:
                 return Benchmark0
         if self.water_tracker.user_water_intake < self.Water_Calculator.final_intake():
             self.water_tracker.check_water_intake()
