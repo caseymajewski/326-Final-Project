@@ -33,8 +33,16 @@ def test_terrarium():
     assert water_calc.adjust_for_activity_level(bmr = 1403.8, activity_multipliers = 4) == 2421.555, "Test failed: Formula should equal 2421.555 TDEE."
     assert water_calc.adjust_for_activity_level(bmr = 1403.8, activity_multipliers = 5) == 2667.22, "Test failed: Formula should equal 2667.22 TDEE."
 
-
-
     water_tracker = tm.WaterTracker
-    percentage = water_tracker.check_water_intake(percentage, float) and percentage > 0
+    percentage = water_tracker.check_water_intake(percentage, float) and percentage > 0, "Test failed: Percentage is not a FLOAT or greater than 0."
+
+    ounces = water_calc.final_intake.water_intake_goal_oz
+    assert water_calc.final_intake(ounces, int), "Test failed: Water Intake in Ounces is not INT."
+    assert water_calc.final_intake(TDEE = 1684.56) == 50.5368, "Test failed: Formula should equal 50.5368 ounces."
+    assert water_calc.final_intake(TDEE = 1930.225) == 57.90675, "Test failed: Formula should equal 57.90675 ounces."
+    assert water_calc.final_intake(TDEE = 2175.89) == 65.2767, "Test failed: Formula should equal 65.2767 ounces."
+    assert water_calc.final_intake(TDEE = 2421.555) == 72.64665, "Test failed: Formula should equal 72.64665 ounces."
+    assert water_calc.final_intake(TDEE = 2667.22) == 80.0166, "Test failed: Formula should equal 80.0166 ounces."
+
+    
     
