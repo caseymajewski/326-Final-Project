@@ -1,4 +1,6 @@
-from tkinter import Tk, Frame, PhotoImage, Button, simpledialog, messagebox
+from tkinter import Tk, Frame, simpledialog, messagebox, Label
+from button import ImageButtonApp  
+from PIL import ImageTk, Image
 
 class WaterCalculator:
     def __init__(self):
@@ -42,7 +44,6 @@ class WaterTracker(WaterCalculator):
         self.water_goal = self.final_intake() # Now set the water goal
         self.user_water_intake = 0
 
-
     def check_water_intake(self, user_water_intake):
         self.user_water_intake += user_water_intake
         if self.user_water_intake >= self.water_goal:
@@ -53,18 +54,19 @@ class WaterTracker(WaterCalculator):
 class BenchmarkFrame(Frame):
     def __init__(self, parent, water_tracker, index):
         super().__init__(parent)
+        self.parent = parent
         self.water_tracker = water_tracker
         self.index = index
-        self.image = PhotoImage(file=f"{index * 10}%.png")
-        self.create_widgets()
 
-    def create_widgets(self):
-        Button(self, text="Drink Water", command=self.drink_water).pack()
+        # Use ImageButtonApp here
+        self.image_button = ImageButtonApp(self, f"{index * 10}%.png", self.drink_water)
+        self.image_button.pack()
 
     def drink_water(self):
         user_water_intake = simpledialog.askfloat("Enter Water Intake", "Enter the amount of water you drank (in ounces):")
         if user_water_intake:
             self.water_tracker.check_water_intake(user_water_intake)
+            self.parent.next_image() 
 
 class MainPage(Tk):
     def __init__(self, *args, **kwargs):
@@ -72,17 +74,33 @@ class MainPage(Tk):
         self.title("Water Intake Tracker")
         self.water_tracker = WaterTracker()
 
+        image_paths= ['0%.png','10%.png','20%.png','30%.png','40%.png','50%.png','60%.png','70%.png','80%.png','90%.png','100%.png']
+        self.image_button_app = ImageButtonApp(self, image_paths)
+        self.image_button_app.pack(expand=True, fill='both')
+
         self.frames = {}
+        self.image_index = 0
+        self.image_paths = [f"{i * 10}%.png" for i in range(11)]  # List of image paths
+
         for i in range(11):
             frame = BenchmarkFrame(self, self.water_tracker, i)
             self.frames[f"Benchmark{i}"] = frame
             frame.grid(row=0, column=0, sticky="nsew")
+
+        self.label = Label(self, image=ImageTk.PhotoImage(file=self.image_paths[self.image_index]))
+        self.label.grid(row=0, column=0, sticky="nsew")
 
         self.show_frame("Benchmark0")
 
     def show_frame(self, frame_name):
         frame = self.frames[frame_name]
         frame.tkraise()
+
+    def next_image(self):
+        self.image_index = (self.image_index + 1) % len(self.image_paths)
+        new_image = ImageTk.PhotoImage(file=self.image_paths[self.image_index])
+        self.label.configure(image=new_image)
+        self.label.image = new_image  # Keep a reference
 
 if __name__ == "__main__":
     main = MainPage()
