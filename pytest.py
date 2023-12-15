@@ -27,11 +27,11 @@ def test_terrarium():
 
     adjust = water_calc.adjust_for_activity_level.TDEE
     assert water_calc.adjust_for_activity_level(adjust, int), "Test failed: TDEE is not INT."
-    assert water_calc.adjust_for_activity_level(activity_multipliers = 1)
-    assert water_calc.adjust_for_activity_level(activity_multipliers = 2)
+    assert water_calc.adjust_for_activity_level(bmr = 1403.8, activity_multipliers = 1) == 1684.56, "Test failed: Formula should equal 1684.56 TDEE."
+    assert water_calc.adjust_for_activity_level(bmr = 1403.8, activity_multipliers = 2) == 1930.225, "Test failed: Formula should equal 1930.225 TDEE."
     assert water_calc.adjust_for_activity_level(bmr = 1403.8, activity_multipliers = 3) == 2175.89, "Test failed: Formula should equal 2175.89 TDEE."
-    assert water_calc.adjust_for_activity_level(activity_multipliers = 4)
-    assert water_calc.adjust_for_activity_level(activity_multipliers = 5)
+    assert water_calc.adjust_for_activity_level(bmr = 1403.8, activity_multipliers = 4) == 2421.555, "Test failed: Formula should equal 2421.555 TDEE."
+    assert water_calc.adjust_for_activity_level(bmr = 1403.8, activity_multipliers = 5) == 2667.22, "Test failed: Formula should equal 2667.22 TDEE."
 
 
 
