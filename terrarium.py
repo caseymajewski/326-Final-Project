@@ -78,6 +78,7 @@ class WaterTracker(Water_Calculator):
          Args: 
          Percentage- defaults to None for now, represents the percentage of the user's water intake"""
         super().__init__()
+        super().final_intake()
     def check_water_intake(self):
         self.user_water_intake = 0
         while self.user_water_intake < self.water_goal:
