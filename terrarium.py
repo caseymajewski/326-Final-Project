@@ -91,33 +91,44 @@ class MainPage(Tk):
     """Main Page for the Water Tracker"""
     def __init__(self, *args, **kwargs):
         """inititalizes the Main page Class
-            Args:"""
+            Args:
+                *args: any number of positional arguments
+                **kwargs: any number of keyword arguments
+            """
         super().__init__(*args, **kwargs)
         self.title("Water Intake Tracker")
         self.water_tracker = WaterTracker()
-
+        #creates instance of ImageButtonApp with image paths
         self.image_paths = ['0%.png', '10%.png', '20%.png', '30%.png', '40%.png', '50%.png', '60%.png', '70%.png', '80%.png', '90%.png', '100%.png']
         self.image_button_app = ImageButtonApp(self, self.image_paths, self.drink_water)
         self.image_button_app.grid(row=0, column=0, sticky="nsew")
-
+       
+        #creates BenchmarkFrame instances and stores them in a dictionary
         self.frames = {}
         for i in range(11):
             frame = BenchmarkFrame(self, self.water_tracker, i)
             self.frames[f"Benchmark{i}"] = frame
             frame.grid(row=1, column=0, sticky="nsew")
-
+        
+        #initializes label with first image
         self.initial_image = ImageTk.PhotoImage(file=self.image_paths[0])
         self.label = Label(self, image=self.initial_image)
         self.label.grid(row=2, column=0, sticky="nsew")
         self.label.image = self.initial_image
 
     def drink_water(self):
+        """handles the I drank button 
+            prompts the user to enter the amount of water they have drunk 
+            and updates percentage"""
         user_water_intake = simpledialog.askfloat("Enter Water Intake", "Enter the amount of water you drank (in ounces):")
         if user_water_intake:
             percentage = self.water_tracker.check_water_intake(user_water_intake)
             self.update_image(percentage)
 
     def update_image(self, percentage):
+        """Updates image based on percentage
+            Args: 
+                percentage: the percentage of water the user has drunk towards their goal"""
         index = min(int(percentage // 10), len(self.image_paths) - 1)
         new_image = ImageTk.PhotoImage(file=self.image_paths[index])
         self.label.configure(image=new_image)
