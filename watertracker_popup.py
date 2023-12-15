@@ -53,7 +53,7 @@ class WaterTrackerWithButton(WaterTracker):
         self.adjust_for_activity_level()  # Adjust for activity level
 
     def show_drank_water_button(self):
-        self.main_page.frames[Benchmark1].show_drank_water_button()
+        self.main_page.frames["Benchmark1"].show_drank_water_button()
 
     def check_water_intake(self, amount):
         user_water_intake = simpledialog.askfloat("Enter Water Intake", "Enter the amount of water you drank (in ounces):")
