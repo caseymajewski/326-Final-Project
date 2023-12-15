@@ -2,7 +2,7 @@ import terrarium as tm
 
 def test_terrarium():
     """
-    tests all the outputs of the terrarium script
+    tests all the inputs/outputs/returns of the terrarium script
     """
 
     # assigning varibles to make assert statements easier
@@ -63,4 +63,3 @@ def test_terrarium():
     assert water_calc.final_intake(TDEE = 2175.89) == 65.2767, "Test failed: Formula should equal 65.2767 ounces."
     assert water_calc.final_intake(TDEE = 2421.555) == 72.64665, "Test failed: Formula should equal 72.64665 ounces."
     assert water_calc.final_intake(TDEE = 2667.22) == 80.0166, "Test failed: Formula should equal 80.0166 ounces."
-    
