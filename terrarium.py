@@ -46,6 +46,8 @@ class WaterTracker(WaterCalculator):
 
     def check_water_intake(self, user_water_intake):
         self.user_water_intake += user_water_intake
+        user_water_intake += float(input("How much water have you drank today?: "))
+
         if self.user_water_intake >= self.water_goal:
             messagebox.showinfo("Congratulations!", "You have met your daily water goal.")
         else:
