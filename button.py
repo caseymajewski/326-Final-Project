@@ -3,17 +3,13 @@ import tkinter as tk
 from PIL import ImageTk, Image
 
 class ImageButtonApp(tk.Frame):
-    def __init__(self, parent, image_paths, **kwargs):
+    def __init__(self, parent, image_paths, drink_water_command, **kwargs):
         super().__init__(parent, **kwargs)
         self.parent = parent
         self.image_paths = image_paths
         self.image_index = 0
 
-        self.img = ImageTk.PhotoImage(Image.open(self.image_paths[self.image_index]))
-        self.label = tk.Label(self, image=self.img)
-        self.label.pack()
-
-        self.drink_water_button = tk.Button(self, text="I Drank Water", fg='#FFCCCB', bg='#CB3737', font=("Times New Roman Bold", 18), command=self.next_image)
+        self.drink_water_button = tk.Button(self, text="I Drank Water", fg='#FFCCCB', bg='#CB3737', font=("Times New Roman Bold", 18), command=drink_water_command)
         self.drink_water_button.pack()
         self.drink_water_button.place(relheight=.12, relwidth=0.2, relx=0.90, rely=0.5, anchor='center')
 
