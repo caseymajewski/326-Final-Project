@@ -3,6 +3,10 @@ from button import ImageButtonApp
 from PIL import ImageTk, Image
 
 class WaterCalculator:
+    """
+    Water Calculator Class: calculates the user's suggested daily water intake by finding the BMR (Basal Metabolic Rate)
+    and the TDEE (Total Daily Energy Expenditure)
+    """
     def __init__(self):
         self.bmr = None
         self.TDEE = None
@@ -10,6 +14,9 @@ class WaterCalculator:
         self.get_user_input()
 
     def get_user_input(self):
+        """
+        gets the user inputs on age, sex, weight, height, and activity level
+        """
         self.age = simpledialog.askinteger("Input", "Enter your age:")
         self.sex = simpledialog.askstring("Input", "Enter your sex (m/f):").lower()
         self.weight = simpledialog.askfloat("Input", "Enter your weight in pounds:")
@@ -18,29 +25,72 @@ class WaterCalculator:
         self.calculate_goals()
 
     def calculate_goals(self):
+        """
+        calculates the BMR (Basal Metabolic Rate) and the TDEE (Total Daily Energy Expenditure)
+        based on the BMR and the TDEE, it sets the suggested daily amount of water the user should drink in ounces
+        shows a message box with how much the suggested daily water intake is for the user
+        """
         self.calc_BMR()  # Calculate BMR
         self.adjust_for_activity_level()  # Adjust BMR based on activity level
         self.water_goal = self.final_intake()  # Now set the water goal
         messagebox.showinfo("Daily Water Goal", f"Your daily water intake goal is {self.water_goal:.2f} ounces.")
 
     def calc_BMR(self):
+        """
+        calculates the BMR (Basal Metabolic Rate) based on weight, height, and age
+        the if statements differenate the formula based on sex
+
+        returns:
+            bmr (int): the result of the Basal Metabolic Rate formula based on the sex
+
+        raises:
+            ValueError: for invalid input for sex (has to be "m" or "f")
+        """
+
+        # conditionals to differenate the BMR (Basal Metabolic Rate) based on the user's sex
+        # if the user input is "m" for male
         if self.sex == "m":
             self.bmr = 66 + (6.23 * self.weight) + (12.7 * self.height) - (6.8 * self.age)
+        # if the user input is "f" for female
         elif self.sex == "f":
             self.bmr = 655 + (4.35 * self.weight) + (4.7 * self.height) - (4.7 * self.age)
+        # if the user input is invalid
         else:
             raise ValueError("Invalid value for 'sex'. Please use 'm' or 'f'.")
+        
         return self.bmr
 
     def adjust_for_activity_level(self):
+        """
+        adjusts the TDEE (Total Daily Energy Expenditure) based on the daily activity level entered
+
+        returns:
+            TDEE (int): Total Daily Energy Expenditure based on BMR (Basal Metabolic Rate) and activity level
+        
+        raises:
+            ValueError: for invalid input for activity level (has to be an integer in between 1 to 5)
+
+        """
+        # the dictionary of activity level multiplers based on user's input from 1 to 5
         activity_multipliers = {1: 1.2, 2: 1.375, 3: 1.55, 4: 1.725, 5: 1.9}
+
+        # if statement to multiply the TDEE (Total Daily Energy Expenditure) based on user's activty level input 
         if self.activity_level in activity_multipliers:
             self.TDEE = self.bmr * activity_multipliers[self.activity_level]
+        # if the user input is invalid
         else:
             raise ValueError("Invalid value for 'activity_level'. Please use values 1-5.")
+        
         return self.TDEE
 
     def final_intake(self):
+        """
+        calculates the user's suggested daily water intake in ounces based on the TDEE (Total Daily Energy Expenditure)
+
+        returns:
+            water_intake_goal_oz (int): the user's suggested daily water intake in ounces
+
+        """
         water_intake_goal_oz = self.TDEE * 0.03
         return water_intake_goal_oz
 
