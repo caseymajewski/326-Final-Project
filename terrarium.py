@@ -62,17 +62,13 @@ class  Water_Calculator():
         """Calculate and print the final water intake."""
         water_intake_goal_oz = self.TDEE * 0.03
         water_intake__goal_cups = water_intake_goal_oz * 0.125
+        self.water_goal = water_intake_goal_oz
         message = f"Your daily water goal is {water_intake_goal_oz:.2f} ounces, or {water_intake__goal_cups:.2f} cups!"
         
 
         # Show the message in a popup
         messagebox.showinfo("Water Intake Result", message)
-
-
-calculator = Water_Calculator()
-calculator.calc_BMR()
-calculator.adjust_for_activity_level()
-calculator.final_intake()
+        return self.water_goal
 
 
 
@@ -81,35 +77,25 @@ class WaterTracker(Water_Calculator):
         """Initialize the WaterTracker class.
          Args: 
          Percentage- defaults to None for now, represents the percentage of the user's water intake"""
-        self.percentage = None
-
-    def check_water_intake(self, amount, water_intake_goal_oz):
-        """
-        Check the water intake for the user.
-
-        Parameters:
-        amount (float): The amount of water the user drank today.
-        """
-        # Initialize the user's water intake to zero
-        user_water_intake = 0
-        # Loop until the user's water intake is equal or greater than the target water intake
-        while user_water_intake < water_intake_goal_oz:
-            user_water_intake += float(input("How much water have you drank so far today?: "))
-            # Compare the user's water intake with the target water intake
-            percentage = round((user_water_intake / water_intake_goal_oz) * 100, -1)             
-            if percentage >= water_intake_goal_oz:
-                print("Congratulations! You have met your daily water goal.")
+        super().__init__()
+    def check_water_intake(self):
+        self.user_water_intake = 0
+        while self.user_water_intake < self.water_goal:
+        # Ask the user how much water they have drunk today
+            try:
+                amount = float(input("How much water have you drunk today?: "))
+                self.user_water_intake += amount
+                # Compare the user's water intake with the target water intake
+                percentage = round((self.user_water_intake / self.water_goal) * 100, -1)
+                self.update_terrarium_water_level(amount, percentage)
+                if percentage >= 100:
+                    print("Congratulations! You have met your daily water goal.")
+                else:
+                    print(f"Keep Going! You only drank {percentage}% of your daily water goal.\nYou need to drink {self.water_goal - self.user_water_intake} more ounces of water to reach your goal")
+            except ValueError:
+                print("Invalid Input. Please enter a numeric value!")
+        return percentage
         
-
-        # Compare the user's water intake with the target water goal
-        if self.user_water_intake >= self.water_intake_goal_oz:
-            print("Congratulations! You have met your daily water goal.")
-            # Calculate the percentage based on the user's total water intake and the water goal
-            percentage = round((self.user_water_intake / self.water_goal) * 100, -1)
-            # Update the terrarium water level
-            self.update_terrarium_water_level(amount, percentage)
-        else:
-            print(f"You need to drink {self.water_goal - self.user_water_intake} more ounces of water to reach your goal.")
 
     def update_terrarium_water_level(self, amount, percentage):
         """
@@ -119,21 +105,18 @@ class WaterTracker(Water_Calculator):
         amount (float): The amount of water to update the terrarium water level with.
         percentage (float): The percentage of the water goal achieved by the user.
         """
-        percentage = round((user_water_intake / water_intake_goal_oz) * 100, -1)             
-        if percentage >= water_intake_goal_oz:
-            frame_index = int(percentage / 10)  # Assuming 10% intervals
-            benchmark_name = f"Benchmark{frame_index}"
-            frame = self.get_benchmark_class(percentage)
+        frame_index = int(percentage / 10)  # Assuming 10% intervals
+        benchmark_name = f"Benchmark{frame_index}"
+        frame = self.get_benchmark_class(percentage)
 
         if frame:
             # Update the water level in the corresponding frame
             frame.update_water_level(amount)  # Pass the amount parameter to the method
         else:
             print(f"Unable to find the corresponding frame for percentage {percentage}%.")
+        return benchmark_name
 
-    def get_benchmark_class(self, percentage):
-        frame_index = int(percentage / 10)  # Assuming 10% intervals
-        benchmark_name = f"Benchmark{frame_index}"
+    def get_benchmark_class(self, benchmark_name):
         return globals().get(benchmark_name)
 
 
