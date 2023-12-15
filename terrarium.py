@@ -58,8 +58,9 @@ class BenchmarkFrame(Frame):
         self.water_tracker = water_tracker
         self.index = index
 
-        # Use ImageButtonApp here
-        self.image_button = ImageButtonApp(self, f"{index * 10}%.png", self.drink_water)
+        # Pass a list with a single image path
+        single_image_path = [f"{index * 10}%.png"]
+        self.image_button = ImageButtonApp(self, single_image_path)
         self.image_button.pack()
 
     def drink_water(self):
@@ -74,33 +75,37 @@ class MainPage(Tk):
         self.title("Water Intake Tracker")
         self.water_tracker = WaterTracker()
 
-        image_paths= ['0%.png','10%.png','20%.png','30%.png','40%.png','50%.png','60%.png','70%.png','80%.png','90%.png','100%.png']
+        image_paths = ['0%.png', '10%.png', '20%.png', '30%.png', '40%.png', '50%.png', '60%.png', '70%.png', '80%.png', '90%.png', '100%.png']
         self.image_button_app = ImageButtonApp(self, image_paths)
-        self.image_button_app.pack(expand=True, fill='both')
+        self.image_button_app.grid(row=0, column=0, sticky="nsew")
 
         self.frames = {}
-        self.image_index = 0
-        self.image_paths = [f"{i * 10}%.png" for i in range(11)]  # List of image paths
-
         for i in range(11):
             frame = BenchmarkFrame(self, self.water_tracker, i)
             self.frames[f"Benchmark{i}"] = frame
-            frame.grid(row=0, column=0, sticky="nsew")
+            frame.grid(row=1, column=0, sticky="nsew")
 
-        self.label = Label(self, image=ImageTk.PhotoImage(file=self.image_paths[self.image_index]))
-        self.label.grid(row=0, column=0, sticky="nsew")
-
-        self.show_frame("Benchmark0")
+        # Initialize label with the first image in the list
+        self.image_index = 0
+        self.initial_image = ImageTk.PhotoImage(file=image_paths[self.image_index])
+        self.label = Label(self, image=self.initial_image)
+        self.label.grid(row=2, column=0, sticky="nsew")
+        self.label.image = self.initial_image  # Keep a reference
 
     def show_frame(self, frame_name):
         frame = self.frames[frame_name]
         frame.tkraise()
 
-    def next_image(self):
-        self.image_index = (self.image_index + 1) % len(self.image_paths)
-        new_image = ImageTk.PhotoImage(file=self.image_paths[self.image_index])
+    def next_image(self,image_paths):
+        self.image_index = (self.image_index + 1) % len(image_paths)
+        new_image = ImageTk.PhotoImage(file=image_paths[self.image_index])
         self.label.configure(image=new_image)
         self.label.image = new_image  # Keep a reference
+
+if __name__ == "__main__":
+    main = MainPage()
+    main.mainloop()
+
 
 if __name__ == "__main__":
     main = MainPage()
