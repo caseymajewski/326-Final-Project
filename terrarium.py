@@ -105,8 +105,3 @@ class MainPage(Tk):
 if __name__ == "__main__":
     main = MainPage()
     main.mainloop()
-
-
-if __name__ == "__main__":
-    main = MainPage()
-    main.mainloop()
