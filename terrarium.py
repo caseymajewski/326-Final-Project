@@ -3,6 +3,7 @@ from button import ImageButtonApp
 from PIL import ImageTk, Image
 
 class WaterCalculator:
+    
     def __init__(self):
         self.bmr = None
         self.TDEE = None
@@ -45,17 +46,30 @@ class WaterCalculator:
         return water_intake_goal_oz
 
 class WaterTracker(WaterCalculator):
+    """ Class tracking the water intake of the user"""
     def __init__(self):
+        """Initializing the Water Tracker Class"""
         super().__init__()
         self.user_water_intake = 0
 
     def check_water_intake(self, user_water_intake):
+        """Method tracking the user's water intake, calculating the percentage, and returning it
+            Args:
+                user_water_intake: the amount of water the user has drunk so far
+            Returns:
+                the percentage of the user's water intake goal that they have drunk so far"""
         self.user_water_intake += user_water_intake
         percentage = (self.user_water_intake / self.water_goal) * 100
         return percentage
 
 class BenchmarkFrame(Frame):
+    """Class representing a frame in the benchmarks"""
     def __init__(self, parent, water_tracker, index):
+        """Initializes the Benchmark Frame Class
+            Args:
+                parent: represents the parent widget
+                water_tracker: instance of water tracker class
+                index: index of the benchmark # """
         super().__init__(parent)
         self.parent = parent
         self.water_tracker = water_tracker
@@ -66,6 +80,7 @@ class BenchmarkFrame(Frame):
         self.drink_button.pack()
 
     def drink_water(self):
+        """Provides pop up for user water intake input, and gets the appropriate frame"""
         user_water_intake = simpledialog.askfloat("Enter Water Intake", "Enter the amount of water you drank (in ounces):")
         if user_water_intake:
             percentage = self.water_tracker.check_water_intake(user_water_intake)
@@ -73,7 +88,10 @@ class BenchmarkFrame(Frame):
 
 
 class MainPage(Tk):
+    """Main Page for the Water Tracker"""
     def __init__(self, *args, **kwargs):
+        """inititalizes the Main page Class
+            Args:"""
         super().__init__(*args, **kwargs)
         self.title("Water Intake Tracker")
         self.water_tracker = WaterTracker()
